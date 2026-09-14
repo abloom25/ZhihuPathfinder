@@ -9,7 +9,7 @@
     "sourceId": "H02-01",
     "url": "https://www.zhihu.com/question/49022412/answer/1310402220",
     "rawTextSha256": "1cf9f75cde55abd7b6c7154c1b126c127fd5f75aacbd20e2d4cd37f02c1bad25",
-    "scope": "公开API材料；产品字段重新组织。首批三条已核对原页。"
+    "scope": "公开API材料；产品字段重新组织。首批三条已核对原页。首页经历与关卡卡片 EARLY/H02-01 共用本来源。"
   },
   {
     "sourceId": "H02-05",
@@ -21,12 +21,36 @@
     "sourceId": "H01-06",
     "url": "https://zhuanlan.zhihu.com/p/696033231",
     "rawTextSha256": "11d8cab3790e9f311e58ec20b2455ef6f0eb4ce9c4d8dff7b48e9b48699407e4",
-    "scope": "公开API材料；产品字段重新组织。首批三条已核对原页。"
+    "scope": "公开API材料；产品字段重新组织。备用素材，未用于当前演示内容。"
   },
   {
     "sourceId": "H03-02",
     "url": "https://zhuanlan.zhihu.com/p/2029317528061580664",
     "rawTextSha256": "92defd05fc77b60005bdadd862d835c04f10fcac812dbc6a55cf69c2ac389684",
-    "scope": "公开API材料；产品字段重新组织。首批三条已核对原页。"
+    "scope": "公开API材料；产品字段重新组织。备用素材，未用于当前演示内容。"
+  },
+  {
+    "sourceId": "L05-04",
+    "url": "https://www.zhihu.com/question/49022412/answer/2040264812706385925",
+    "rawTextSha256": "123b0360ae98d7079bb6cae0c856fdae6d4e95f93e10fa7eb3e40434bbe3075e",
+    "scope": "关卡卡片材料；2026-09-14 经开放平台搜索返回摘要逐字核对全部 6 条引文。"
+  },
+  {
+    "sourceId": "L05-05",
+    "url": "https://www.zhihu.com/question/49022412/answer/3549210053",
+    "rawTextSha256": "025443d69426c8bd5809dc8c1c349f99b1843eb69fb83c3f61dfb0de59251dca",
+    "scope": "关卡卡片材料；2026-09-14 经开放平台搜索返回摘要逐字核对全部 2 条引文。"
+  },
+  {
+    "sourceId": "L06-07",
+    "url": "https://www.zhihu.com/question/28824325/answer/2074298463039312782",
+    "rawTextSha256": "6b83d6dfbffebea226774cc983d13431dea7a0be38841bd9306c0cc23d88d555",
+    "scope": "关卡卡片材料；2026-09-14 经开放平台搜索返回摘要逐字核对全部 6 条引文。"
+  },
+  {
+    "sourceId": "L06-04",
+    "url": "https://www.zhihu.com/question/28824325/answer/2073177548771554138",
+    "rawTextSha256": null,
+    "scope": "关卡卡片材料；来源 URL 来自开放平台搜索返回。2026-09-14 因上游配额限制未完成逐字核对，引文核对待补；页面对该卡保留 unknowns 标注。"
   }
 ]
