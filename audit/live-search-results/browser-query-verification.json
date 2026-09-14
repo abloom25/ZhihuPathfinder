@@ -1,0 +1,93 @@
+{
+  "at": "2026-09-14T03:57:27.998Z",
+  "query": "offer 截止时间 等另一家",
+  "status": 200,
+  "mode": "cached",
+  "fetchedAt": "2026-09-14T03:56:31.572Z",
+  "requestId": "10efa050-0af0-43e9-8866-0e67177bcfd0",
+  "count": 10,
+  "frontEndContractValid": true,
+  "elapsedMs": 38,
+  "candidates": [
+    {
+      "id": "candidate-871c61f50dd1e6a4bad2",
+      "title": "收到一家大厂 offer,但更想去的另一家还没动静,我该如何抉择? - 知乎",
+      "url": "https://www.zhihu.com/question/2018345272573456568/answer/2022724089723332128",
+      "author": "职场老人",
+      "excerptCharacters": 166,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-d84b5b5ef19079aa4d9d",
+      "title": "已经收到了offer让在具体的时间办理入职,但又想等另一家公司的offer,该怎么办? - 知乎",
+      "url": "https://www.zhihu.com/question/29271918/answer/2181753283",
+      "author": "JobReady",
+      "excerptCharacters": 593,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-d815a8ab2a4cf83afce3",
+      "title": "如果收到offer,HR只给你很短时间考虑,这时候你还想等另一家公司的结果,应该怎么办? - 知乎",
+      "url": "https://www.zhihu.com/question/20587319/answer/2281496849",
+      "author": "老胡聊Java",
+      "excerptCharacters": 358,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-c33b4e976f938cc6bc70",
+      "title": "英国留学offer如何抉择? - 知乎",
+      "url": "https://www.zhihu.com/question/309127890/answer/2046377658720718984",
+      "author": "英国高登私校留学(伦敦)",
+      "excerptCharacters": 1081,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-21518b82ed07e29bd09a",
+      "title": "收到offer,hr说两天内给他回复是否接受,但是下周还有别的公司的答复,想再观望怎么办? - 知乎",
+      "url": "https://www.zhihu.com/question/1934540106406028822/answer/1934966144869064870",
+      "author": "且慢Murphy",
+      "excerptCharacters": 546,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-239ec32d97215f3ab004",
+      "title": "银行秋招什么时候发 Offer?有效期多久?违约金是多少? - 知乎",
+      "url": "https://zhuanlan.zhihu.com/p/2077686652311552557",
+      "author": "A银行弘新陶老师1",
+      "excerptCharacters": 980,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-2a867d1b63444de08a38",
+      "title": "面试了想要去的公司但还没出结果却收到了另一家offer,可以和HR商量再等等吗? - 知乎",
+      "url": "https://www.zhihu.com/question/579202766/answer/2849001923",
+      "author": "僮嘟嘟",
+      "excerptCharacters": 374,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-fd0d1e3ba56bd1aea9a2",
+      "title": "当更理想的offer还在等待结果时,要如何应对已经发放offer的企业? - 知乎",
+      "url": "https://www.zhihu.com/question/652073827/answer/3481791215",
+      "author": "侃大山",
+      "excerptCharacters": 714,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-9d901cda2f7f7e75244e",
+      "title": "面试通过拟录用,但还想等另一份更心仪公司的结果,如何拖延时间? - 知乎",
+      "url": "https://www.zhihu.com/question/512196313/answer/2315921276",
+      "author": "人资生态体",
+      "excerptCharacters": 333,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-6da91f40f42015d8ab7d",
+      "title": "收到一家大厂 offer,但更想去的另一家还没动静,我该如何抉择? - 知乎",
+      "url": "https://www.zhihu.com/question/2018345272573456568/answer/2019423077382013422",
+      "author": "难男人",
+      "excerptCharacters": 279,
+      "reviewStatus": "unreviewed"
+    }
+  ]
+}

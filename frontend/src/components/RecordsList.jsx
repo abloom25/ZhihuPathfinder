@@ -98,7 +98,7 @@ export default function RecordsList({ reloadStored, notice, onNotice, onOpen, on
     )
   }
 
-  const records = state.records
+  const records = state.status === 'empty' ? [] : state.records
 
   return (
     <section className="stage" aria-label="我的问津">

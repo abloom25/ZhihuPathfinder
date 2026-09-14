@@ -385,7 +385,7 @@ async function main() {
   } else {
     console.log('未发现不变量违例。');
   }
-  process.exit(0);
+  process.exit(findings.length ? 1 : 0);
 }
 
 main().catch(e => { console.error('FUZZ-HARNESS-CRASH:', e); process.exit(1); });

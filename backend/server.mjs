@@ -67,8 +67,11 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
     const signal = AbortSignal.timeout(timeoutMs);
     // 看门狗：信号由本服务创建、必按时触发；即使上游实现无视 abort 永不结算，也强制按超时收尾，
     // 避免 active 永久卡死把全局搜索锁成 429。看门狗赛输后的后台结算由 work.catch 兜底吞掉。
-    const watchdog = new Promise((_, reject) =>
-      signal.addEventListener('abort', () => reject(new Failure(504, 'UPSTREAM_TIMEOUT')), { once: true }));
+    let onTimeout;
+    const watchdog = new Promise((_, reject) => {
+      onTimeout = () => reject(new Failure(504, 'UPSTREAM_TIMEOUT'));
+      signal.addEventListener('abort', onTimeout, { once: true });
+    });
     try {
       const url = new URL('https://developer.zhihu.com/api/v1/content/zhihu_search');
       url.searchParams.set('Query', query); url.searchParams.set('Count', '10');
@@ -77,6 +80,7 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
           Authorization: `Bearer ${secret}`, 'X-Request-Timestamp': String(Math.floor(now() / 1000)),
           'Content-Type': 'application/json',
         } });
+        signal.throwIfAborted(); // A late response must not mutate cooldown/cache after timeout.
         if (response.status === 429) {
           blockedUntil = now() + 60000;
           throw new Failure(429, 'RATE_LIMITED', 60);
@@ -85,10 +89,12 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
         // Bound upstream body size; never forward raw error bodies or credentials.
         const chunks = []; let size = 0;
         for await (const chunk of response.body) {
+          signal.throwIfAborted();
           size += chunk.length;
           if (size > 2 * 1024 * 1024) throw unavailable();
           chunks.push(chunk);
         }
+        signal.throwIfAborted();
         const body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
         if (body.Code === 30001) {
           blockedUntil = now() + 60000;
@@ -107,7 +113,7 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
       if (error instanceof Failure) throw error;
       if (signal.aborted) throw new Failure(504, 'UPSTREAM_TIMEOUT');
       throw unavailable();
-    } finally { active = false; }
+    } finally { signal.removeEventListener('abort', onTimeout); active = false; }
   }
   return http.createServer(async (req, res) => {
     const requestId = randomUUID();

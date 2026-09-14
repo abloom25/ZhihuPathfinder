@@ -114,3 +114,19 @@ test('摘录版本冲突的备份被整体拒绝，不覆盖任何内容', async
   assert.equal(getRaw(), before)
   await assert.rejects(appendEntry(changed, 'stale'), StorageConflictError)
 })
+
+test('收到的分享快照与本人原话分开；追加、导出导入保持关联，伪 ID 不落库', async () => {
+  const receivedFrom = { shareId: crypto.randomUUID(), situation: '等待', text: '他人的原文片段', demo: true }
+  const r = await createRecord({ ...input('自己的当下'), receivedFrom })
+  const updated = await appendEntry(r, '自己的后来')
+  assert.equal(updated.initialText, '自己的当下')
+  assert.deepEqual(updated.receivedFrom, receivedFrom)
+  const backup = exportRecordsJson()
+  localStorage.removeItem(KEY)
+  await importRecordsJson(backup)
+  assert.deepEqual(loadRecords().records[0].receivedFrom, receivedFrom)
+  assert.equal(loadRecords().records[0].entries[0].text, '自己的后来')
+  const before = getRaw()
+  await assert.rejects(createRecord({ ...input('错误来源'), receivedFrom: { ...receivedFrom, shareId: '-'.repeat(36) } }))
+  assert.equal(getRaw(), before)
+})

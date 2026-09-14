@@ -78,7 +78,7 @@ export function validDraft(d) {
   return (
     d.version === 1 &&
     typeof d.creationId === 'string' &&
-    /^[a-f0-9-]{36}$/.test(d.creationId) &&
+    /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(d.creationId) &&
     typeof d.revealed === 'boolean' &&
     isActions(d.actions) &&
     ['custom', 'text', 'reason', 'context', 'contextKind', 'disagreement', 'quoteId'].every(

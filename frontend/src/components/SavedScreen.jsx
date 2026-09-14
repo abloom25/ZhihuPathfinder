@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Icon } from './Icons.jsx'
 import { PencilTextarea } from './PencilField.jsx'
-import { createShare, managementToken, revokeShare } from '../lib/shares.js'
+import { loadShareAttempt, prepareShare, publishPrepared, revokePrepared } from '../lib/shares.js'
 import { codePointLength } from '../lib/utils.js'
 
 // 记录详情：原话（只读）、来源摘录、追加变化、自愿分享（选择→预览→确认后才发请求）。
@@ -31,6 +31,16 @@ export default function SavedScreen({ record, appending, appendError, onAppend, 
         <p className="record-text">{record.initialText}</p>
         <p className="frozen-note">保存于 {new Date(record.createdAt).toLocaleString('zh-CN')}</p>
       </div>
+
+      {record.receivedFrom && (
+        <div className="paper-card quote-card">
+          <h2 className="card-label">起初触动我的分享（保存时的副本）</h2>
+          <p className="frozen-note">{record.receivedFrom.demo ? '演示／虚构测试内容' : '本人自述，未经独立核验'} · {record.receivedFrom.situation}</p>
+          <blockquote className="quote-text">{record.receivedFrom.text}</blockquote>
+          <a className="source-link" href={`/share/${record.receivedFrom.shareId}`}>回看关联分享</a>
+          <p className="frozen-note">对方撤回后链接可能不可用；这份已保存的参考与我的原话分别保留。</p>
+        </div>
+      )}
 
       {record.sourceExcerpt && record.sourceUrl && (
         <div className="paper-card quote-card">
@@ -78,7 +88,7 @@ export default function SavedScreen({ record, appending, appendError, onAppend, 
           我的问津
         </button>
         <button type="button" className="link" onClick={() => setShareOpen(true)}>
-          愿意时，留给后来者
+          分享／管理已公开的内容
         </button>
       </div>
 
@@ -93,18 +103,23 @@ function ShareFlow({ record, onClose }) {
     { label: '起初的我', text: record.initialText },
     ...record.entries.map((e, i) => ({ label: `第 ${i + 1} 次追加`, text: e.text })),
   ]
+  const [restored] = useState(() => {
+    try { const a = loadShareAttempt(record.id); return { attempt: a?.status === 'revoked' ? null : a, error: '' } }
+    catch (e) { return { attempt: null, error: e.message } }
+  })
   const [selected, setSelected] = useState([])
-  const [text, setText] = useState('')
-  const [situation, setSituation] = useState('')
-  const [demo, setDemo] = useState(true) // 演示内容默认勾演示标记
-  const [includeSource, setIncludeSource] = useState(false)
-  const [preview, setPreview] = useState(false)
+  const [text, setText] = useState(restored.attempt?.body.text ?? '')
+  const [situation, setSituation] = useState(restored.attempt?.body.situation ?? '')
+  const [demo, setDemo] = useState(restored.attempt?.body.demo ?? true) // 演示内容默认勾演示标记
+  const [includeSource, setIncludeSource] = useState(!!restored.attempt?.body.sourceUrl)
+  const [preview, setPreview] = useState(!!restored.attempt)
   const [consent, setConsent] = useState(false)
   const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
-  const [done, setDone] = useState(null) // {id}
+  const [error, setError] = useState(restored.error)
+  const [done, setDone] = useState(restored.attempt?.status === 'published' ? { id: restored.attempt.id } : null) // {id}
   const [revoking, setRevoking] = useState(false)
-  const attempt = useRef(null) // {id, body}
+  const [notice, setNotice] = useState('')
+  const attempt = useRef(restored.attempt) // {id, body}
 
   const edited = () => {
     setPreview(false)
@@ -124,9 +139,10 @@ function ShareFlow({ record, onClose }) {
   }
 
   async function publish() {
-    if (!consent || !preview || busy || done) return
+    if (!consent || !preview || busy || done || restored.error) return
     setBusy(true)
     setError('')
+    setNotice('')
     try {
       if (!attempt.current) {
         const body = {
@@ -140,12 +156,9 @@ function ShareFlow({ record, onClose }) {
               ? Array.from(record.sourceExcerpt).slice(0, 500).join('')
               : null,
         }
-        const { id } = await createShare({ content: body })
-        attempt.current = { id, body }
-      } else {
-        // 重试：同一 id、同一管理 token、同一 body，不重复创建
-        await createShare({ id: attempt.current.id, content: attempt.current.body, existingToken: managementToken(attempt.current.id) })
+        attempt.current = await prepareShare(record.id, body)
       }
+      await publishPrepared(record.id)
       setDone({ id: attempt.current.id })
     } catch (e) {
       setError(e instanceof Error ? e.message : '未确认发布结果，可通过接收页检查状态后重试')
@@ -159,8 +172,9 @@ function ShareFlow({ record, onClose }) {
     setRevoking(true)
     setError('')
     try {
-      await revokeShare(done.id, managementToken(done.id))
+      await revokePrepared(record.id)
       setDone(null)
+      setNotice('这份分享已撤回，本应用不再公开展示。私人记录保持不变。')
       attempt.current = null
       setPreview(false)
       setConsent(false)
@@ -182,6 +196,7 @@ function ShareFlow({ record, onClose }) {
           只选择你愿意公开的本人内容，私人记录与以后的续写保持私密。不自动发布到知乎。
         </p>
 
+        {notice && <p role="status">{notice}</p>}
         {done ? (
           <div className="confirm-bar" role="status">
             <p>已公开到本应用「留给后来者」。公开不等于有人读过，更不等于帮助成功。</p>
@@ -202,7 +217,7 @@ function ShareFlow({ record, onClose }) {
           </div>
         ) : (
           <>
-            <fieldset disabled={busy || !!attempt.current} className="share-fields">
+            <fieldset disabled={busy || !!attempt.current || !!restored.error} className="share-fields">
               {parts.map((p, i) => (
                 <label key={i} className="share-part">
                   <input
@@ -271,7 +286,10 @@ function ShareFlow({ record, onClose }) {
             </fieldset>
 
             {attempt.current && (
-              <p className="frozen-note">本次提交内容已冻结，重试不会重复创建。</p>
+              <div className="frozen-note">
+                <p>已恢复同一次提交的原内容。结果尚未确认，可以重试；不会另建一份分享。</p>
+                <a href={`/share/${attempt.current.id}`} target="_blank" rel="noreferrer">检查原提交／进入接收页管理</a>
+              </div>
             )}
 
             {!preview ? (
@@ -316,7 +334,7 @@ function ShareFlow({ record, onClose }) {
                   <button type="button" className="btn-ghost" disabled={busy} onClick={() => setPreview(false)}>
                     返回修改
                   </button>
-                  <button type="button" className="btn-primary small" disabled={busy || !consent} onClick={publish}>
+                  <button type="button" className="btn-primary small" disabled={busy || !consent || !!restored.error} onClick={publish}>
                     {busy ? '正在提交…' : '确认公开，留给后来者'}
                   </button>
                 </div>

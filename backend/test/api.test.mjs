@@ -72,7 +72,9 @@ test('upstream business rate limit blocks repeats while home remains usable', as
   await withApp({ secret: 'test-only', fetchImpl: async () => { calls++; return upstream({ Code: 30001 }); } }, async (base, post) => {
     for (const query of ['a', 'b']) {
       const response = await post(query); assert.equal(response.status, 429);
-      assert.equal((await response.json()).error.retryAfterSeconds, null);
+      const wait = (await response.json()).error.retryAfterSeconds;
+      assert.ok(Number.isInteger(wait) && wait >= 1 && wait <= 60);
+      assert.equal(response.headers.get('retry-after'), String(wait));
     }
     assert.equal(calls, 1); assert.equal((await fetch(`${base}/stories`)).status, 200);
   });

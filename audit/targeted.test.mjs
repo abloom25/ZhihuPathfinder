@@ -18,17 +18,21 @@ const goodItem = (i = 1) => ({
   Url: `https://www.zhihu.com/question/1/answer/${i}`, EditTime: 1700000000,
 });
 
+const servers = new Set();
 async function boot(opts = {}) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'zp-test-'));
   const app = createApp({
-    secret: 'test-secret', timeoutMs: 800, minIntervalMs: opts.minIntervalMs ?? 150,
+    secret: 'test-secret', timeoutMs: opts.timeoutMs ?? 800, minIntervalMs: opts.minIntervalMs ?? 150,
     cacheTtlMs: 5000, shareFile: opts.shareFile ?? path.join(dir, 'shares.json'),
     fetchImpl: opts.fetchImpl ?? (() => okUpstream()),
   });
   await new Promise(res => app.listen(0, '127.0.0.1', res));
-  return { app, base: `http://127.0.0.1:${app.address().port}`, shareFile: opts.shareFile ?? path.join(dir, 'shares.json') };
+  servers.add(app);
+  return { app, dir, base: `http://127.0.0.1:${app.address().port}`, shareFile: opts.shareFile ?? path.join(dir, 'shares.json') };
 }
 async function shutdown(srv) {
+  servers.delete(srv.app);
+  if(srv.dir)fs.rmSync(srv.dir,{recursive:true,force:true});
   try { srv.app.closeAllConnections?.(); await new Promise(r => srv.app.close(r)); } catch {}
 }
 async function hit(base, p, { method = 'GET', headers = {}, body, timeoutMs = 4000 } = {}) {
@@ -45,7 +49,7 @@ const postShare = (base, body, headers = {}) => hit(base, '/api/v1/shares', {
 const validShareBody = (id) => ({ id, situation: '处境', text: '内容', demo: false, consent: true, sourceUrl: null, sourceExcerpt: null });
 const TOKEN = 'ab'.repeat(32);
 
-test.after(() => process.exit(0)); // 悬挂用例的兜底，防 --test 挂起
+test.after(async () => { for(const app of servers) { app.closeAllConnections(); await new Promise(r=>app.close(r)); } });
 
 // ============ 发现 1（已修复）：畸形 Origin → 403 来源不匹配，不再误报存储故障 ============
 test('[已修复] Origin: null / 不可解析 Origin 得到 403 而非 503 存储误报', async () => {
@@ -94,7 +98,7 @@ test('[已修复] 500 条撤回墓碑后新分享可创建；500 条活行仍触
   const dirB = fs.mkdtempSync(path.join(os.tmpdir(), 'zp-capB-'));
   const fileB = path.join(dirB, 'shares.json');
   fs.writeFileSync(fileB, JSON.stringify(
-    Array.from({ length: 500 }, () => ({ id: crypto.randomUUID(), tokenHash: 'a'.repeat(64), createdAt: '2026-09-14T00:00:00.000Z' }))));
+    Array.from({ length: 500 }, () => (({consent,...row})=>({...row,tokenHash:'a'.repeat(64),createdAt:'2026-09-14T00:00:00.000Z'}))(validShareBody(crypto.randomUUID())))));
   const srvB = await boot({ shareFile: fileB });
   assert.equal((await mk(srvB, TOKEN)).status, 429, '500 条活行仍拒绝新分享');
   await shutdown(srvB);

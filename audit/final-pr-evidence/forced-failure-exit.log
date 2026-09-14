@@ -1,0 +1,107 @@
+TAP version 13
+# Subtest: [已修复] Origin: null / 不可解析 Origin 得到 403 而非 503 存储误报
+not ok 1 - [已修复] Origin: null / 不可解析 Origin 得到 403 而非 503 存储误报
+  ---
+  duration_ms: 21.386416
+  type: 'test'
+  location: '/Users/evander/Labs/codex/ZhihuPathfinder-audit-20260914/audit/exit-code-proof.test.mjs:55:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    origin=null 应按来源不匹配拒绝
+
+    403 !== 418
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 418
+  actual: 403
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/evander/Labs/codex/ZhihuPathfinder-audit-20260914/audit/exit-code-proof.test.mjs:59:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: [已修复] 无视 abort 的悬挂上游在 timeoutMs 后得 504，且不锁死后续查询
+ok 2 - [已修复] 无视 abort 的悬挂上游在 timeoutMs 后得 504，且不锁死后续查询
+  ---
+  duration_ms: 1116.804167
+  type: 'test'
+  ...
+# Subtest: [已修复] 500 条撤回墓碑后新分享可创建；500 条活行仍触发容量上限
+ok 3 - [已修复] 500 条撤回墓碑后新分享可创建；500 条活行仍触发容量上限
+  ---
+  duration_ms: 20.200792
+  type: 'test'
+  ...
+# Subtest: [已修复] shares 接受 Application/JSON 与带空格的 media type，与 search 一致
+ok 4 - [已修复] shares 接受 Application/JSON 与带空格的 media type，与 search 一致
+  ---
+  duration_ms: 20.022125
+  type: 'test'
+  ...
+# Subtest: [已修复] zhihu.com:8443 被消毒层拒绝（502），标准 443 端口由 URL 解析自动剥除
+ok 5 - [已修复] zhihu.com:8443 被消毒层拒绝（502），标准 443 端口由 URL 解析自动剥除
+  ---
+  duration_ms: 0.481792
+  type: 'test'
+  ...
+# Subtest: [不变量] 上游 URL 消毒：仅 https+zhihu.com 精确域，剥凭据/查询/锚点，fail-closed
+ok 6 - [不变量] 上游 URL 消毒：仅 https+zhihu.com 精确域，剥凭据/查询/锚点，fail-closed
+  ---
+  duration_ms: 0.597875
+  type: 'test'
+  ...
+# Subtest: [不变量] 任何响应不含 tokenHash；无凭据 POST 一律 403
+ok 7 - [不变量] 任何响应不含 tokenHash；无凭据 POST 一律 403
+  ---
+  duration_ms: 13.432625
+  type: 'test'
+  ...
+# Subtest: [不变量] 并发同 id：一个 201、同 token 幂等 200、异 token 403；存储恰好一条
+ok 8 - [不变量] 并发同 id：一个 201、同 token 幂等 200、异 token 403；存储恰好一条
+  ---
+  duration_ms: 12.417459
+  type: 'test'
+  ...
+# Subtest: [不变量] 缓存：同查询 TTL 内 cached 命中且绕过节流，不同查询 429 并带 retryAfterSeconds
+ok 9 - [不变量] 缓存：同查询 TTL 内 cached 命中且绕过节流，不同查询 429 并带 retryAfterSeconds
+  ---
+  duration_ms: 4.835666
+  type: 'test'
+  ...
+# Subtest: [不变量] 上游 3MB 响应被 2MB 上限拦截（502），302 重定向不跟随，错误体不透传
+ok 10 - [不变量] 上游 3MB 响应被 2MB 上限拦截（502），302 重定向不跟随，错误体不透传
+  ---
+  duration_ms: 12.80025
+  type: 'test'
+  ...
+# Subtest: [不变量] 20KB 流式请求体越过 8KB 上限时客户端收到 INVALID_QUERY
+ok 11 - [不变量] 20KB 流式请求体越过 8KB 上限时客户端收到 INVALID_QUERY
+  ---
+  duration_ms: 81.848166
+  type: 'test'
+  ...
+# Subtest: [不变量] :x/*//evil.com/%zz 等畸形目标不产生 5xx
+ok 12 - [不变量] :x/*//evil.com/%zz 等畸形目标不产生 5xx
+  ---
+  duration_ms: 248.258333
+  type: 'test'
+  ...
+# Subtest: [不变量] 上游限流码触发全局退避，retryAfterSeconds=60 且响应带 Retry-After 头
+ok 13 - [不变量] 上游限流码触发全局退避，retryAfterSeconds=60 且响应带 Retry-After 头
+  ---
+  duration_ms: 3.675333
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 12
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3334.648666
+
+Observed exitCode=1

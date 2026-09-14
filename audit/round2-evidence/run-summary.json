@@ -1,0 +1,47 @@
+{
+  "at": "2026-09-14T03:41:46.278Z",
+  "rows": [
+    {
+      "name": "backend",
+      "exitCode": 0,
+      "tests": 52,
+      "fail": 0
+    },
+    {
+      "name": "frontend",
+      "exitCode": 0,
+      "tests": 22,
+      "fail": 0
+    },
+    {
+      "name": "build",
+      "exitCode": 0,
+      "tests": 0,
+      "fail": 0
+    },
+    {
+      "name": "ablation",
+      "exitCode": 0,
+      "tests": 0,
+      "fail": 0
+    },
+    {
+      "name": "added-tests-20260914",
+      "exitCode": 0,
+      "tests": 8,
+      "fail": 0
+    },
+    {
+      "name": "added-tests-42",
+      "exitCode": 0,
+      "tests": 8,
+      "fail": 0
+    },
+    {
+      "name": "memory",
+      "exitCode": 0,
+      "tests": 0,
+      "fail": 0
+    }
+  ]
+}
