@@ -40,8 +40,8 @@ function MainApp() {
   const [loaded] = useState(loadDraft)
   const [d, setD] = useState(loaded.draft)
   const [recoveryError, setRecoveryError] = useState(loaded.error)
-  const [view, setView] = useState('level') // 'level' | 'records' | 'record'
-  const [record, setRecord] = useState(null)
+  const [view, setView] = useState(() => new URLSearchParams(window.location.search).has('record') ? 'record' : 'level') // 'level' | 'records' | 'record'
+  const [record, setRecord] = useState(() => loadRecordById(new URLSearchParams(window.location.search).get('record')))
   const [recordsNotice, setRecordsNotice] = useState('')
   const [stage, setStage] = useState('choice') // choice | reveal | edit | preview
   const [caseIndex, setCaseIndex] = useState(0)
@@ -172,7 +172,7 @@ function MainApp() {
   }
 
   // 草稿损坏：不覆盖，先确认
-  if (recoveryError) {
+  if (recoveryError && view === 'level') {
     return (
       <div className="app">
         <Topbar onRecords={() => setView('records')} onLevel={() => setView('level')} />
@@ -206,7 +206,7 @@ function MainApp() {
       />
 
       <main className="main">
-        {view === 'records' && (
+        {(view === 'records' || (view === 'record' && !record)) && (
           <RecordsList
             reloadStored={loadRecords}
             notice={recordsNotice}
@@ -218,12 +218,14 @@ function MainApp() {
 
         {view === 'record' && record && (
           <SavedScreen
+            key={record.id}
             record={record}
             appending={appending}
             appendError={appendError}
             onAppend={handleAppend}
             onBackToSource={() => {
-              if (record.sourceUrl) window.open(record.sourceUrl, '_blank', 'noopener')
+              if (record.receivedFrom) window.location.assign('/share/' + encodeURIComponent(record.receivedFrom.shareId))
+              else if (record.sourceUrl) window.open(record.sourceUrl, '_blank', 'noopener')
               else setView('level')
             }}
             onOpenRecords={() => setView('records')}

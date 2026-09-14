@@ -1,0 +1,101 @@
+{
+  "at": "2026-09-14T03:56:03.346Z",
+  "query": "等offer 后来 收到",
+  "upstream": [
+    {
+      "httpStatus": 200,
+      "businessCode": 0,
+      "returnedItems": 10,
+      "elapsedMs": 1037
+    }
+  ],
+  "backendStatus": 200,
+  "mode": "live",
+  "frontEndContractValid": true,
+  "candidateCount": 10,
+  "errorCode": null,
+  "candidates": [
+    {
+      "id": "candidate-5d0a80a92386a53e93e6",
+      "title": "同样被说\"回去等通知\",为什么他3天拿offer,你等到默拒? - 知乎",
+      "url": "https://zhuanlan.zhihu.com/p/2078886385570861888",
+      "author": "帮你忙LLMtoWord简历优化",
+      "excerptCharacters": 460,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-cddb3ef16c319700e781",
+      "title": "HR已经给了口头OFFER,说等领导批,尽量周五发offer,周五过了还没发来,是不是没戏了? - 知乎",
+      "url": "https://www.zhihu.com/question/334599871/answer/1943721683937650451",
+      "author": "行止",
+      "excerptCharacters": 53,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-115d733b11f7b1260f04",
+      "title": "面试官问离职原因,我说了句话,HR 当场笑了,第二天就收到 offer - 知乎",
+      "url": "https://zhuanlan.zhihu.com/p/2018057825167910572",
+      "author": "职场反套路",
+      "excerptCharacters": 966,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-051ff129a553c92f42e1",
+      "title": "国企的offer可以有多慢 - 知乎",
+      "url": "https://zhuanlan.zhihu.com/p/363938579",
+      "author": "啦啦",
+      "excerptCharacters": 369,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-a31be30dca6d7424ee42",
+      "title": "offer等了一周还没给还要等么? - 知乎",
+      "url": "https://www.zhihu.com/question/442963450/answer/1716440805",
+      "author": "千沐",
+      "excerptCharacters": 224,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-2a867d1b63444de08a38",
+      "title": "面试了想要去的公司但还没出结果却收到了另一家offer,可以和HR商量再等等吗? - 知乎",
+      "url": "https://www.zhihu.com/question/579202766/answer/2849001923",
+      "author": "僮嘟嘟",
+      "excerptCharacters": 374,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-c843a145c1eb098425db",
+      "title": "面试了想要去的公司但还没出结果却收到了另一家offer,可以和HR商量再等等吗? - 知乎",
+      "url": "https://www.zhihu.com/question/579202766/answer/2850339919",
+      "author": "猫先生",
+      "excerptCharacters": 149,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-7451208440a0d301ec40",
+      "title": "offer已经审批完成,待发出;这个状态要多久才会收到正式offer呀? - 知乎",
+      "url": "https://www.zhihu.com/question/590195736/answer/2940910631",
+      "author": "爱因为在心中",
+      "excerptCharacters": 115,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-e864a05a2a2a1b362e4c",
+      "title": "面试通过,也谈好了薪资,hr说内部需要走审批流程,是录取了吧? - 知乎",
+      "url": "https://www.zhihu.com/question/49022412/answer/2040264812706385925",
+      "author": "悟道",
+      "excerptCharacters": 221,
+      "reviewStatus": "unreviewed"
+    },
+    {
+      "id": "candidate-a922484315462d1c2f3e",
+      "title": "2022 年你们的春招 offer 到手了吗? - 知乎",
+      "url": "https://www.zhihu.com/question/523577346/answer/2431354931",
+      "author": "左语",
+      "excerptCharacters": 1014,
+      "reviewStatus": "unreviewed"
+    }
+  ],
+  "repeatMode": "cached",
+  "upstreamCallsAfterRepeat": 1
+}
