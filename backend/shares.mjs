@@ -18,8 +18,12 @@ export function createShares(file) {
     else {const r=rows.find(x=>x.id===id);if(!r)throw fail(404,'分享不存在或已撤回');reply(200,{data:publicRow(r)})}
     return true;
    }
-   if(req.headers.origin && new URL(req.headers.origin).host!==req.headers.host)throw fail(403,'来源不匹配');
-   if(req.headers['content-type']?.split(';')[0]!=='application/json')throw fail(400,'请使用 JSON');
+   // 不可解析的 Origin（含浏览器沙箱 iframe 发送的字面量 "null"）按来源不匹配拒绝，不得误报存储故障
+   if(req.headers.origin){
+    let originHost;try{originHost=new URL(req.headers.origin).host}catch{throw fail(403,'来源不匹配')}
+    if(originHost!==req.headers.host)throw fail(403,'来源不匹配');
+   }
+   if(req.headers['content-type']?.split(';')[0].trim().toLowerCase()!=='application/json')throw fail(400,'请使用 JSON');
    const chunks=[];let size=0;for await(const c of req){size+=c.length;if(size>16384)throw fail(413,'内容过长');chunks.push(c)}
    let body;try{body=JSON.parse(Buffer.concat(chunks))}catch{throw fail(400,'格式错误')}
    const token=req.headers.authorization?.replace(/^Bearer /,'');
@@ -31,7 +35,7 @@ export function createShares(file) {
     const rows=read(),old=rows.find(r=>r.id===body.id);
     const data={id:body.id,situation:body.situation,text:body.text,demo:body.demo,sourceUrl:body.sourceUrl,sourceExcerpt:body.sourceExcerpt};
     if(old){if(old.tokenHash!==hash(token))throw fail(403,'管理凭据不匹配');if(old.revoked || Object.keys(data).some(k=>data[k]!==old[k]))throw fail(409,'该次分享已存在或已撤回，请勿覆盖');reply(200,{data:publicRow(old)});return true}
-    if(rows.length>=500)throw fail(429,'本次试运行分享容量已满');
+    if(rows.filter(r=>!r.revoked).length>=500)throw fail(429,'本次试运行分享容量已满');
     const r={...data,createdAt:new Date().toISOString(),tokenHash:hash(token)};write([...rows,r]);reply(201,{data:publicRow(r)});return true;
    }
    if(req.method==='DELETE') {
