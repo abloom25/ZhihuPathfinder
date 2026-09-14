@@ -38,9 +38,9 @@ not ok 6 - late responses from timed-out work cannot change cooldown or overwrit
   failureType: 'testCodeFailure'
   error: |-
     late 429 must not affect current work
-    
+
     429 !== 200
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 200

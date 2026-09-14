@@ -8,9 +8,9 @@ not ok 1 - [已修复] Origin: null / 不可解析 Origin 得到 403 而非 503 
   failureType: 'testCodeFailure'
   error: |-
     origin=null 应按来源不匹配拒绝
-    
+
     403 !== 418
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 418
