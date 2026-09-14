@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test",
+    "test": "node --test ../audit/targeted.test.mjs",
     "verify:integration": "node scripts/verify-integration.mjs"
   },
   "devDependencies": {
