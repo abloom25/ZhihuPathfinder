@@ -6,6 +6,6 @@
     "dev": "pnpm --filter ./frontend dev",
     "build": "pnpm --filter ./frontend build",
     "backend": "pnpm --filter ./backend start",
-    "test": "pnpm --filter ./backend test"
+    "test": "npm --prefix backend test && npm --prefix frontend test"
   }
 }
