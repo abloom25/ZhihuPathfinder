@@ -1,0 +1,157 @@
+TAP version 13
+# Subtest: 冻结对象逐字保存起初选择；修改原数组不影响原话
+ok 1 - 冻结对象逐字保存起初选择；修改原数组不影响原话
+  ---
+  duration_ms: 1.812959
+  type: 'test'
+  ...
+# Subtest: 保存原话、异议与不确定性，并标明探索不等于亲历
+ok 2 - 保存原话、异议与不确定性，并标明探索不等于亲历
+  ---
+  duration_ms: 0.273584
+  type: 'test'
+  ...
+# Subtest: 全部 64 种前后行动组合，起初选择和原话均不被改写
+ok 3 - 全部 64 种前后行动组合，起初选择和原话均不被改写
+  ---
+  duration_ms: 0.293708
+  type: 'test'
+  ...
+# Subtest: 8 组选择 × 3 种态度，未决定也能完整记录
+ok 4 - 8 组选择 × 3 种态度，未决定也能完整记录
+  ---
+  duration_ms: 0.152709
+  type: 'test'
+  ...
+# Subtest: 2000 Unicode 码点边界，包括合成后超限
+ok 5 - 2000 Unicode 码点边界，包括合成后超限
+  ---
+  duration_ms: 0.7245
+  type: 'test'
+  ...
+# Subtest: 草稿恢复保留 UUID；坏 JSON 与伪 UUID 不覆盖
+ok 6 - 草稿恢复保留 UUID；坏 JSON 与伪 UUID 不覆盖
+  ---
+  duration_ms: 3.218083
+  type: 'test'
+  ...
+# Subtest: 并发创建保留两条记录；过时版本的追加与删除被拒绝且不丢内容
+ok 7 - 并发创建保留两条记录；过时版本的追加与删除被拒绝且不丢内容
+  ---
+  duration_ms: 5.8285
+  type: 'test'
+  ...
+# Subtest: 同一版本的两次并发追加：恰好一次成功、一次冲突，只有一条进入存储
+ok 8 - 同一版本的两次并发追加：恰好一次成功、一次冲突，只有一条进入存储
+  ---
+  duration_ms: 0.35875
+  type: 'test'
+  ...
+# Subtest: 写入失败保留旧字节；读取失败不得伪装成空导出
+ok 9 - 写入失败保留旧字节；读取失败不得伪装成空导出
+  ---
+  duration_ms: 0.286125
+  type: 'test'
+  ...
+# Subtest: 相同 creationId 重试复用原记录；内容变更则冲突拒绝，不产生第二条
+ok 10 - 相同 creationId 重试复用原记录；内容变更则冲突拒绝，不产生第二条
+  ---
+  duration_ms: 0.30125
+  type: 'test'
+  ...
+# Subtest: 来源摘录在追加、导出、导入后逐字保留；旧结构记录仍可加载
+ok 11 - 来源摘录在追加、导出、导入后逐字保留；旧结构记录仍可加载
+  ---
+  duration_ms: 0.597875
+  type: 'test'
+  ...
+# Subtest: 摘录必须伴随知乎来源；超限摘录被拒绝且不影响已有记录
+ok 12 - 摘录必须伴随知乎来源；超限摘录被拒绝且不影响已有记录
+  ---
+  duration_ms: 0.836833
+  type: 'test'
+  ...
+# Subtest: 摘录版本冲突的备份被整体拒绝，不覆盖任何内容
+ok 13 - 摘录版本冲突的备份被整体拒绝，不覆盖任何内容
+  ---
+  duration_ms: 0.314542
+  type: 'test'
+  ...
+# Subtest: 收到的分享快照与本人原话分开；追加、导出导入保持关联，伪 ID 不落库
+ok 14 - 收到的分享快照与本人原话分开；追加、导出导入保持关联，伪 ID 不落库
+  ---
+  duration_ms: 0.337667
+  type: 'test'
+  ...
+# Subtest: mode must be a string, not a coercible recursive array
+ok 15 - mode must be a string, not a coercible recursive array
+  ---
+  duration_ms: 1.594833
+  type: 'test'
+  ...
+# Subtest: a valid-shaped response for another query must not be shown as this query
+ok 16 - a valid-shaped response for another query must not be shown as this query
+  ---
+  duration_ms: 28.21275
+  type: 'test'
+  ...
+# Subtest: 响应丢失后重新读取管理记录，以相同 ID、凭据、原文重试
+ok 17 - 响应丢失后重新读取管理记录，以相同 ID、凭据、原文重试
+  ---
+  duration_ms: 32.813958
+  type: 'test'
+  ...
+# Subtest: 32 个并发准备只得到一个 ID；不同内容不得覆盖冻结提交
+ok 18 - 32 个并发准备只得到一个 ID；不同内容不得覆盖冻结提交
+  ---
+  duration_ms: 0.692167
+  type: 'test'
+  ...
+# Subtest: 存储拒绝或管理记录损坏时不发出请求、不覆盖损坏内容
+ok 19 - 存储拒绝或管理记录损坏时不发出请求、不覆盖损坏内容
+  ---
+  duration_ms: 0.211208
+  type: 'test'
+  ...
+# Subtest: HTTP 200 空包、错 ID、错误来源都不能确认公开
+ok 20 - HTTP 200 空包、错 ID、错误来源都不能确认公开
+  ---
+  duration_ms: 1.5035
+  type: 'test'
+  ...
+# Subtest: 关闭后可重新读取撤回凭据；错误撤回响应不标成功，重复撤回安全
+ok 21 - 关闭后可重新读取撤回凭据；错误撤回响应不标成功，重复撤回安全
+  ---
+  duration_ms: 0.716042
+  type: 'test'
+  ...
+# Subtest: 递归极端成功包不能绕过契约校验
+ok 22 - 递归极端成功包不能绕过契约校验
+  ---
+  duration_ms: 0.198167
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136.718125
+# start of coverage report
+# ------------------------------------------------------------------------------------
+# file         | line % | branch % | funcs % | uncovered lines
+# ------------------------------------------------------------------------------------
+# src          |        |          |         | 
+#  lib         |        |          |         | 
+#   flow.js    |  96.77 |    90.00 |  100.00 | 96-97 122-123
+#   records.js |  93.78 |    87.10 |   95.00 | 101-102 205-209 212-217 225-226
+#   search.js  |  65.56 |    70.00 |   50.00 | 18-27 41-46 55-57 68-71 76-77 79-83 85
+#   shares.js  |  94.08 |    78.26 |  100.00 | 11-12 57-58 60-61 110-111 129-130
+#   utils.js   |  88.24 |    60.00 |  100.00 | 15-16
+# ------------------------------------------------------------------------------------
+# all files    |  90.33 |    83.16 |   91.11 | 
+# ------------------------------------------------------------------------------------
+# end of coverage report

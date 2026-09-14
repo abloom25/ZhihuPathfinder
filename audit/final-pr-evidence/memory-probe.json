@@ -1,0 +1,36 @@
+{
+  "requests": 6000,
+  "samples": [
+    {
+      "batch": 0,
+      "heapUsed": 3455000,
+      "outstandingExternalListeners": 0
+    },
+    {
+      "batch": 1,
+      "heapUsed": 3466872,
+      "outstandingExternalListeners": 0
+    },
+    {
+      "batch": 2,
+      "heapUsed": 3466944,
+      "outstandingExternalListeners": 0
+    },
+    {
+      "batch": 3,
+      "heapUsed": 3552280,
+      "outstandingExternalListeners": 0
+    },
+    {
+      "batch": 4,
+      "heapUsed": 3543112,
+      "outstandingExternalListeners": 0
+    },
+    {
+      "batch": 5,
+      "heapUsed": 3558456,
+      "outstandingExternalListeners": 0
+    }
+  ],
+  "scope": "bounded Node cancellation workload; not browser heap or proof of absence of leaks"
+}

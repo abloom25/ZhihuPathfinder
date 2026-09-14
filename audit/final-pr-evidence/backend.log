@@ -1,0 +1,339 @@
+TAP version 13
+# Subtest: seeded recursive search inputs distinguish valid controls from invalid structures (256 cases)
+ok 1 - seeded recursive search inputs distinguish valid controls from invalid structures (256 cases)
+  ---
+  duration_ms: 725.402375
+  type: 'test'
+  ...
+# Subtest: recursive share fields and Unicode boundaries preserve existing bytes
+ok 2 - recursive share fields and Unicode boundaries preserve existing bytes
+  ---
+  duration_ms: 329.630333
+  type: 'test'
+  ...
+# Subtest: share hostile URLs, missing consent, foreign origin, wrong token and retry identity
+ok 3 - share hostile URLs, missing consent, foreign origin, wrong token and retry identity
+  ---
+  duration_ms: 40.608584
+  type: 'test'
+  ...
+# Subtest: share UUID must not accept arrays or all-hyphen identifiers
+ok 4 - share UUID must not accept arrays or all-hyphen identifiers
+  ---
+  duration_ms: 2.112542
+  type: 'test'
+  ...
+# Subtest: deep JSON, oversized request, malformed JSON, and corrupt store degrade without erasure
+ok 5 - deep JSON, oversized request, malformed JSON, and corrupt store degrade without erasure
+  ---
+  duration_ms: 23.277833
+  type: 'test'
+  ...
+# Subtest: mapping preserves evidence and unreviewed status; rejects hostile URLs and types
+ok 6 - mapping preserves evidence and unreviewed status; rejects hostile URLs and types
+  ---
+  duration_ms: 0.602458
+  type: 'test'
+  ...
+# Subtest: bounded cache eviction and oversized upstream body
+ok 7 - bounded cache eviction and oversized upstream body
+  ---
+  duration_ms: 9.997042
+  type: 'test'
+  ...
+# Subtest: empty author names retain separate source identities instead of failing the whole batch
+ok 8 - empty author names retain separate source identities instead of failing the whole batch
+  ---
+  duration_ms: 68.413959
+  type: 'test'
+  ...
+# Subtest: curated home/detail work without API; quotations and separate episodes retained
+ok 9 - curated home/detail work without API; quotations and separate episodes retained
+  ---
+  duration_ms: 72.952625
+  type: 'test'
+  ...
+# Subtest: trimmed Unicode query, live mapping, stable cache timestamp and request-specific ID
+ok 10 - trimmed Unicode query, live mapping, stable cache timestamp and request-specific ID
+  ---
+  duration_ms: 13.711666
+  type: 'test'
+  ...
+# Subtest: invalid body never reaches upstream
+ok 11 - invalid body never reaches upstream
+  ---
+  duration_ms: 26.493916
+  type: 'test'
+  ...
+# Subtest: upstream business rate limit blocks repeats while home remains usable
+ok 12 - upstream business rate limit blocks repeats while home remains usable
+  ---
+  duration_ms: 12.095083
+  type: 'test'
+  ...
+# Subtest: timeout is 504 and releases the active search lock
+ok 13 - timeout is 504 and releases the active search lock
+  ---
+  duration_ms: 32.894708
+  type: 'test'
+  ...
+# Subtest: empty success distinguished from malformed or failed upstream, errors do not leak
+ok 14 - empty success distinguished from malformed or failed upstream, errors do not leak
+  ---
+  duration_ms: 26.107792
+  type: 'test'
+  ...
+# Subtest: expired cache refetches and active calls do not fan out
+ok 15 - expired cache refetches and active calls do not fan out
+  ---
+  duration_ms: 129.085416
+  type: 'test'
+  ...
+# Subtest: v4 valid evidence review accepted only in experiment, empty uncertainty allowed
+ok 16 - v4 valid evidence review accepted only in experiment, empty uncertainty allowed
+  ---
+  duration_ms: 9.534209
+  type: 'test'
+  ...
+# Subtest: v4 nonexistent evidence, missing checks or contradictory approval cannot pass
+ok 17 - v4 nonexistent evidence, missing checks or contradictory approval cannot pass
+  ---
+  duration_ms: 0.235334
+  type: 'test'
+  ...
+# Subtest: v4 wrong summary/outcome/relation downgrade independently
+ok 18 - v4 wrong summary/outcome/relation downgrade independently
+  ---
+  duration_ms: 0.095875
+  type: 'test'
+  ...
+# Subtest: v4 failed relation does not remove independent supported facts or original
+ok 19 - v4 failed relation does not remove independent supported facts or original
+  ---
+  duration_ms: 0.115458
+  type: 'test'
+  ...
+# Subtest: v4 service failure keeps source, expected labels are never sent to reviewer
+ok 20 - v4 service failure keeps source, expected labels are never sent to reviewer
+  ---
+  duration_ms: 0.286125
+  type: 'test'
+  ...
+# Subtest: 40 historical items: exact mapping, canonical duplicates, missing fields and bounded hints
+ok 21 - 40 historical items: exact mapping, canonical duplicates, missing fields and bounded hints
+  ---
+  duration_ms: 68.815458
+  type: 'test'
+  ...
+# Subtest: one malformed upstream record rejects entire response rather than fabricating empty success
+ok 22 - one malformed upstream record rejects entire response rather than fabricating empty success
+  ---
+  duration_ms: 38.959625
+  type: 'test'
+  ...
+# Subtest: contract: curated responses and missing story
+ok 23 - contract: curated responses and missing story
+  ---
+  duration_ms: 116.465375
+  type: 'test'
+  ...
+# Subtest: contract: live, cached, empty and invalid query
+ok 24 - contract: live, cached, empty and invalid query
+  ---
+  duration_ms: 25.749584
+  type: 'test'
+  ...
+# Subtest: contract: HTTP/business limits and all upstream failures
+ok 25 - contract: HTTP/business limits and all upstream failures
+  ---
+  duration_ms: 63.152
+  type: 'test'
+  ...
+# Subtest: contract guard actually rejects missing/extra fields, wrong enum/date/status
+ok 26 - contract guard actually rejects missing/extra fields, wrong enum/date/status
+  ---
+  duration_ms: 2.844333
+  type: 'test'
+  ...
+# Subtest: corrupt-but-parseable store never leaks arbitrary fields, mutates bytes or reports success
+ok 27 - corrupt-but-parseable store never leaks arbitrary fields, mutates bytes or reports success
+  ---
+  duration_ms: 198.180833
+  type: 'test'
+  ...
+# Subtest: 128 distinct concurrent writes + revoke/retry races preserve all snapshots and never resurrect
+ok 28 - 128 distinct concurrent writes + revoke/retry races preserve all snapshots and never resurrect
+  ---
+  duration_ms: 763.250375
+  type: 'test'
+  ...
+# Subtest: temporary-file write failure leaves previous database unchanged and retry recovers after storage repair
+ok 29 - temporary-file write failure leaves previous database unchanged and retry recovers after storage repair
+  ---
+  duration_ms: 19.522875
+  type: 'test'
+  ...
+# Subtest: real upstream body stalls time out and release the search concurrency gate
+ok 30 - real upstream body stalls time out and release the search concurrency gate
+  ---
+  duration_ms: 107.804208
+  type: 'test'
+  ...
+# Subtest: seeded recursive variadic share bodies: 768 cases, stable rejection and no accidental writes
+ok 31 - seeded recursive variadic share bodies: 768 cases, stable rejection and no accidental writes
+  ---
+  duration_ms: 1441.090333
+  type: 'test'
+  ...
+# Subtest: late responses from timed-out work cannot change cooldown or overwrite a newer cache entry
+ok 32 - late responses from timed-out work cannot change cooldown or overwrite a newer cache entry
+  ---
+  duration_ms: 73.833166
+  type: 'test'
+  ...
+# Subtest: independent receiving, durable immutable snapshot, authorization, retry and withdrawal
+ok 33 - independent receiving, durable immutable snapshot, authorization, retry and withdrawal
+  ---
+  duration_ms: 179.60275
+  type: 'test'
+  ...
+# Subtest: v2 numbering: actual/literal newlines, punctuation and emoji roundtrip without rewriting
+ok 34 - v2 numbering: actual/literal newlines, punctuation and emoji roundtrip without rewriting
+  ---
+  duration_ms: 1.732959
+  type: 'test'
+  ...
+# Subtest: v2 grouping: exact coverage, disjoint assignment, boundaries and assessment
+ok 35 - v2 grouping: exact coverage, disjoint assignment, boundaries and assessment
+  ---
+  duration_ms: 0.989042
+  type: 'test'
+  ...
+# Subtest: v2 outcomes: foreign old result rejected even when it exists in raw source
+ok 36 - v2 outcomes: foreign old result rejected even when it exists in raw source
+  ---
+  duration_ms: 2.528458
+  type: 'test'
+  ...
+# Subtest: v2 outcomes: wishes/plans/conditional work do not become occurred actions or outcomes
+ok 37 - v2 outcomes: wishes/plans/conditional work do not become occurred actions or outcomes
+  ---
+  duration_ms: 0.186917
+  type: 'test'
+  ...
+# Subtest: v2 process: stage two never receives sibling evidence and never publishes confirmed split
+ok 38 - v2 process: stage two never receives sibling evidence and never publishes confirmed split
+  ---
+  duration_ms: 1.521666
+  type: 'test'
+  ...
+# Subtest: v2 abstention or invalid first stage skips outcome generation and retains original
+ok 39 - v2 abstention or invalid first stage skips outcome generation and retains original
+  ---
+  duration_ms: 0.404291
+  type: 'test'
+  ...
+# Subtest: v3 empty/omitted unknowns and extra descriptive fields do not reject evidence
+ok 40 - v3 empty/omitted unknowns and extra descriptive fields do not reject evidence
+  ---
+  duration_ms: 26.515375
+  type: 'test'
+  ...
+# Subtest: v3 mixed sentence retains actual start and separately marks wish
+ok 41 - v3 mixed sentence retains actual start and separately marks wish
+  ---
+  duration_ms: 0.234334
+  type: 'test'
+  ...
+# Subtest: v3 local failure retains unrelated valid claim and source exact offsets
+ok 42 - v3 local failure retains unrelated valid claim and source exact offsets
+  ---
+  duration_ms: 0.123167
+  type: 'test'
+  ...
+# Subtest: v3 advice and quoted examples never count as author facts
+ok 43 - v3 advice and quoted examples never count as author facts
+  ---
+  duration_ms: 0.102042
+  type: 'test'
+  ...
+# Subtest: v3 a bad relationship does not remove valid facts; date-only basis is not a boundary
+ok 44 - v3 a bad relationship does not remove valid facts; date-only basis is not a boundary
+  ---
+  duration_ms: 0.366167
+  type: 'test'
+  ...
+# Subtest: v3 contradictory relations become pending while independent pair remains
+ok 45 - v3 contradictory relations become pending while independent pair remains
+  ---
+  duration_ms: 0.15525
+  type: 'test'
+  ...
+# Subtest: v3 relationship provider failure preserves extracted claims; never certifies
+ok 46 - v3 relationship provider failure preserves extracted claims; never certifies
+  ---
+  duration_ms: 3.653167
+  type: 'test'
+  ...
+# Subtest: v3 distinguishes transport errors from parse errors
+ok 47 - v3 distinguishes transport errors from parse errors
+  ---
+  duration_ms: 44.439125
+  type: 'test'
+  ...
+# Subtest: split: valid evidence remains unverified, with original text and no confirmed episodes
+ok 48 - split: valid evidence remains unverified, with original text and no confirmed episodes
+  ---
+  duration_ms: 6.116916
+  type: 'test'
+  ...
+# Subtest: split: invented quote, foreign subject, missing boundary and wishes rejected
+ok 49 - split: invented quote, foreign subject, missing boundary and wishes rejected
+  ---
+  duration_ms: 0.383709
+  type: 'test'
+  ...
+# Subtest: split: unknown outcome has no quote; one episode is not a confirmed single lifetime story
+ok 50 - split: unknown outcome has no quote; one episode is not a confirmed single lifetime story
+  ---
+  duration_ms: 0.129375
+  type: 'test'
+  ...
+# Subtest: split: a real quote assigned to wrong event cannot be certified by the mechanical gate
+ok 51 - split: a real quote assigned to wrong event cannot be certified by the mechanical gate
+  ---
+  duration_ms: 0.096667
+  type: 'test'
+  ...
+# Subtest: split: duplicate IDs, missing structure and impossible assessments rejected
+ok 52 - split: duplicate IDs, missing structure and impossible assessments rejected
+  ---
+  duration_ms: 0.332417
+  type: 'test'
+  ...
+# Subtest: split: unavailable, invalid JSON and truncated generation retain raw input
+ok 53 - split: unavailable, invalid JSON and truncated generation retain raw input
+  ---
+  duration_ms: 51.082292
+  type: 'test'
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2822.299375
+# start of coverage report
+# ------------------------------------------------------------
+# file        | line % | branch % | funcs % | uncovered lines
+# ------------------------------------------------------------
+# backend     |        |          |         | 
+#  server.mjs |  92.90 |    96.33 |   82.35 | 171-183
+#  shares.mjs | 100.00 |    96.52 |  100.00 | 
+# ------------------------------------------------------------
+# all files   |  94.67 |    96.43 |   92.50 | 
+# ------------------------------------------------------------
+# end of coverage report

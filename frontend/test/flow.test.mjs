@@ -4,7 +4,7 @@ import { beforeEachReset } from './helpers.js'
 import { buildInitialText, clearDraft, composeText, describeAfter, freezeChoice, freshDraft, loadDraft, saveDraft, textFits, validDraft, LEVEL_DRAFT_KEY } from '../src/lib/flow.js'
 beforeEach(beforeEachReset)
 const subsets = Array.from({ length: 8 }, (_, mask) => ['A','B','C'].filter((_, i) => mask & (1 << i)))
-const build = (frozen, after) => buildInitialText({ frozen, after, context: '', disagreement: '' })
+const build = (frozen, after, context = '', disagreement = '') => buildInitialText({ frozen, after, context, disagreement })
 test('冻结对象逐字保存起初选择；修改原数组不影响原话', () => {
   const actions = ['B'], frozen = freezeChoice(actions, '先礼貌地问一句')
   actions.push('A')
@@ -22,6 +22,7 @@ test('全部 64 种前后行动组合，起初选择和原话均不被改写', (
   for (const first of subsets) for (const next of subsets) {
     const frozen = freezeChoice(first, '起初原话')
     const text = build(frozen, { mode: 'change', text: composeText(next, ''), reason: '后来判断' })
+    assert.ok(text.startsWith('【关卡探索'))
     assert.ok(text.includes('看后续前，我倾向：' + frozen.text))
     assert.ok(text.includes('起初原话'))
     assert.ok(text.includes('改变倾向：' + composeText(next, '')))
@@ -32,12 +33,20 @@ test('全部 64 种前后行动组合，起初选择和原话均不被改写', (
 })
 test('8 组选择 × 3 种态度，未决定也能完整记录', () => {
   assert.equal(composeText([], ''), '仍未决定')
+  const bare = build(freezeChoice([], ''), { mode: 'unsure', text: '', reason: '' })
+  assert.ok(!bare.includes('我补充的情况'))
+  assert.ok(!bare.includes('我想保留的异议'))
   for (const first of subsets) for (const mode of ['keep','change','unsure']) {
     const after = { mode, text: '', reason: '' }
     assert.ok(build(freezeChoice(first, ''), after).includes(describeAfter(after)))
   }
 })
 test('2000 Unicode 码点边界，包括合成后超限', () => {
+  const head = n => build(freezeChoice(['A'], '字'.repeat(n)), { mode: 'keep', text: '', reason: '' })
+  const maxN = 2000 - Array.from(head(1)).length + 1
+  assert.equal(Array.from(head(maxN)).length, 2000)
+  assert.equal(textFits(head(maxN)), true)
+  assert.equal(textFits(head(maxN + 1)), false)
   assert.equal(textFits('😀'.repeat(2000)), true)
   assert.equal(textFits('😀'.repeat(2001)), false)
   assert.equal(textFits(build(freezeChoice(['A'], '字'.repeat(2000)), { mode: 'keep', text: '', reason: '' })), false)
@@ -48,6 +57,10 @@ test('草稿恢复保留 UUID；坏 JSON 与伪 UUID 不覆盖', () => {
   assert.deepEqual(loadDraft(), { draft: d, error: '' })
   clearDraft()
   assert.equal(loadDraft().error, '')
+  assert.equal(loadDraft().draft.revealed, false)
+  for (const bad of [{ ...d, actions: ['wait'] }, { selected: ['A'], custom: '旧结构' }]) {
+    saveDraft(bad); assert.ok(loadDraft().error); assert.equal(loadDraft().draft.revealed, false)
+  }
   assert.equal(validDraft({ ...d, creationId: '-'.repeat(36) }), false)
   sessionStorage.setItem(LEVEL_DRAFT_KEY, '{broken json')
   assert.ok(loadDraft().error)

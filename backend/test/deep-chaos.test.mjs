@@ -82,3 +82,19 @@ test('seeded recursive variadic share bodies: 768 cases, stable rejection and no
   });
  }
 });
+
+test('late responses from timed-out work cannot change cooldown or overwrite a newer cache entry',async()=>{
+ for(const lateStatus of [429,200]){
+  let finishOld,calls=0;
+  const result=title=>Response.json({Code:0,Data:{Items:[{Title:title,ContentText:'synthetic',AuthorName:'fixture',Url:'https://www.zhihu.com/question/1/answer/1'}]}});
+  await withApp(async({request})=>{
+   assert.equal((await request('POST','/api/v1/search',{query:'same'})).status,504);
+   if(lateStatus===200)assert.equal((await request('POST','/api/v1/search',{query:'same'})).status,200);
+   finishOld(lateStatus===429?new Response('',{status:429}):result('old'));
+   await new Promise(r=>setImmediate(r));await new Promise(r=>setImmediate(r));
+   const r=await request('POST','/api/v1/search',{query:'same'});
+   assert.equal(r.status,200,'late '+lateStatus+' must not affect current work');
+   assert.equal((await r.json()).data.candidates[0].source.title,'new');
+  },{secret:'synthetic',timeoutMs:30,fetchImpl:()=>++calls===1?new Promise(r=>{finishOld=r}):Promise.resolve(result('new'))});
+ }
+});

@@ -7,5 +7,8 @@ run('build','npm',['run','build'],join(root,'frontend'));
 run('ablation',process.execPath,['run-ablation.mjs',join(out,'ablation')],join(root,'frontend'));
 for(const seed of ['20260914','42'])run('added-tests-'+seed,process.execPath,['--test','audit/adversarial.test.mjs'],root,{FUZZ_SEED:seed});
 run('memory',process.execPath,['--expose-gc','audit/memory-probe.mjs']);
+run('targeted',process.execPath,['--test','audit/targeted.test.mjs']);
+run('fuzz',process.execPath,['audit/fuzz.mjs']);
+run('deep-memory',process.execPath,['--expose-gc','audit/deep-memory-probe.mjs']);
 writeFileSync(join(out,'run-summary.json'),JSON.stringify({at:new Date().toISOString(),rows},null,2));
 if(rows.some(r=>r.exitCode!==0))process.exitCode=1;

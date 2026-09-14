@@ -29,7 +29,7 @@ export function mapItems(items, fetchedAt) {
         typeof item.Title !== 'string' || typeof item.Url !== 'string') throw unavailable();
     let url;
     try { url = new URL(item.Url); } catch { throw unavailable(); }
-    if (url.protocol !== 'https:' || url.username || url.password ||
+    if (url.protocol !== 'https:' || url.port || url.username || url.password ||
         !(url.hostname === 'zhihu.com' || url.hostname.endsWith('.zhihu.com'))) throw unavailable();
     url.search = ''; url.hash = '';
     const canonical = url.href;
@@ -60,51 +60,66 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
     cache.delete(query);
     if (!secret) throw unavailable();
     if (now() < blockedUntil || active || now() - lastStart < minIntervalMs) {
-      throw new Failure(429, 'RATE_LIMITED');
+      const waitSeconds = now() < blockedUntil ? Math.max(1, Math.ceil((blockedUntil - now()) / 1000)) : 1;
+      throw new Failure(429, 'RATE_LIMITED', waitSeconds);
     }
     active = true; lastStart = now();
     const signal = AbortSignal.timeout(timeoutMs);
+    // 看门狗：信号由本服务创建、必按时触发；即使上游实现无视 abort 永不结算，也强制按超时收尾，
+    // 避免 active 永久卡死把全局搜索锁成 429。看门狗赛输后的后台结算由 work.catch 兜底吞掉。
+    let onTimeout;
+    const watchdog = new Promise((_, reject) => {
+      onTimeout = () => reject(new Failure(504, 'UPSTREAM_TIMEOUT'));
+      signal.addEventListener('abort', onTimeout, { once: true });
+    });
     try {
       const url = new URL('https://developer.zhihu.com/api/v1/content/zhihu_search');
       url.searchParams.set('Query', query); url.searchParams.set('Count', '10');
-      const response = await fetchImpl(url, { signal, redirect: 'error', headers: {
-        Authorization: `Bearer ${secret}`, 'X-Request-Timestamp': String(Math.floor(now() / 1000)),
-        'Content-Type': 'application/json',
-      } });
-      if (response.status === 429) {
-        blockedUntil = now() + 60000;
-        throw new Failure(429, 'RATE_LIMITED');
-      }
-      if (!response.ok) throw unavailable();
-      // Bound upstream body size; never forward raw error bodies or credentials.
-      const chunks = []; let size = 0;
-      for await (const chunk of response.body) {
-        size += chunk.length;
-        if (size > 2 * 1024 * 1024) throw unavailable();
-        chunks.push(chunk);
-      }
-      const body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-      if (body.Code === 30001) {
-        blockedUntil = now() + 60000;
-        throw new Failure(429, 'RATE_LIMITED');
-      }
-      if (body.Code !== 0) throw unavailable();
-      const fetchedAt = new Date(now()).toISOString();
-      const data = { query, candidates: mapItems(body.Data?.Items, fetchedAt), hasMore: false };
-      if (cache.size >= maxCacheEntries) cache.delete(cache.keys().next().value);
-      cache.set(query, { data, fetchedAt, savedAt: now() });
-      return { data, meta: { requestId, mode: 'live', fetchedAt } };
+      const work = (async () => {
+        const response = await fetchImpl(url, { signal, redirect: 'error', headers: {
+          Authorization: `Bearer ${secret}`, 'X-Request-Timestamp': String(Math.floor(now() / 1000)),
+          'Content-Type': 'application/json',
+        } });
+        signal.throwIfAborted(); // A late response must not mutate cooldown/cache after timeout.
+        if (response.status === 429) {
+          blockedUntil = now() + 60000;
+          throw new Failure(429, 'RATE_LIMITED', 60);
+        }
+        if (!response.ok) throw unavailable();
+        // Bound upstream body size; never forward raw error bodies or credentials.
+        const chunks = []; let size = 0;
+        for await (const chunk of response.body) {
+          signal.throwIfAborted();
+          size += chunk.length;
+          if (size > 2 * 1024 * 1024) throw unavailable();
+          chunks.push(chunk);
+        }
+        signal.throwIfAborted();
+        const body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+        if (body.Code === 30001) {
+          blockedUntil = now() + 60000;
+          throw new Failure(429, 'RATE_LIMITED', 60);
+        }
+        if (body.Code !== 0) throw unavailable();
+        const fetchedAt = new Date(now()).toISOString();
+        const data = { query, candidates: mapItems(body.Data?.Items, fetchedAt), hasMore: false };
+        if (cache.size >= maxCacheEntries) cache.delete(cache.keys().next().value);
+        cache.set(query, { data, fetchedAt, savedAt: now() });
+        return { data, meta: { requestId, mode: 'live', fetchedAt } };
+      })();
+      work.catch(() => {});
+      return await Promise.race([work, watchdog]);
     } catch (error) {
       if (error instanceof Failure) throw error;
       if (signal.aborted) throw new Failure(504, 'UPSTREAM_TIMEOUT');
       throw unavailable();
-    } finally { active = false; }
+    } finally { signal.removeEventListener('abort', onTimeout); active = false; }
   }
   return http.createServer(async (req, res) => {
     const requestId = randomUUID();
-    const reply = (status, body) => {
+    const reply = (status, body, extraHeaders = {}) => {
       res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8',
-        'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
+        'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', ...extraHeaders });
       res.end(JSON.stringify(body));
     };
     try {
@@ -146,7 +161,8 @@ export function createApp({ fetchImpl = fetch, secret = '', timeoutMs = 20000,
     } catch (error) {
       const failure = error instanceof Failure ? error : unavailable();
       reply(failure.status, { error: { code: failure.code, message: messages[failure.code],
-        retryAfterSeconds: failure.retryAfterSeconds }, meta: { requestId } });
+        retryAfterSeconds: failure.retryAfterSeconds }, meta: { requestId } },
+        failure.status === 429 && failure.retryAfterSeconds ? { 'Retry-After': String(failure.retryAfterSeconds) } : {});
     }
   });
 }
