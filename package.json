@@ -1,0 +1,11 @@
+{
+  "name": "houlaine",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "pnpm --filter ./frontend dev",
+    "build": "pnpm --filter ./frontend build",
+    "backend": "pnpm --filter ./backend start",
+    "test": "pnpm --filter ./backend test"
+  }
+}

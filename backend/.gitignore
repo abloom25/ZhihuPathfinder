@@ -1,0 +1,6 @@
+.env
+*.log
+.cache/
+node_modules/
+frontend-dist/*
+!frontend-dist/.gitkeep

@@ -1,0 +1,503 @@
+{
+  "verifiedAt": "2026-09-13T23:56:41.413Z",
+  "inputSha256": "34117422d1258c91906b543f03f890674d5400b041ecedc6db7adc0cc4a7b2c5",
+  "rowCount": 40,
+  "mappingPassed": 40,
+  "duplicateChecks": 40,
+  "missingFieldChecks": 160,
+  "missingEditTimeChecks": 40,
+  "hintsTrue": 7,
+  "manualHintAudits": 8,
+  "hintMismatches": [
+    "H01-01",
+    "H02-02",
+    "H02-07",
+    "H02-09",
+    "H02-10",
+    "H03-02"
+  ],
+  "limitation": "Automated metadata/text fidelity check for all 40. Eight targeted hint-context audits, not full semantic annotation or independent source verification. A false hint does not prove a single event; a true hint does not confirm multiple events.",
+  "checks": [
+    {
+      "id": "H01-01",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "69a142cad9f95345df670fd7b1aacb5aab9c9515097befba7d3d38d526afbb5d",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/1962560957524996957",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": {
+        "multiple": true,
+        "evidence": "第一个面试工作：客服",
+        "secondEvidence": "第二个面试工作：前台",
+        "note": "漏提示：至少两份不同工作。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H01-02",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "7e0d4554efdb52a3e4a3286d55a047d5ada21883008c94f5cdd1d7ee60e5a23b",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2079943243718989549",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-03",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "936b2cc7bc24a6850f1e0436869c3798fad3485fb2cb0ae87ae0d16332a37a60",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/652038393",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-04",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "3e29d14b09e1be78deaae989a8beadf5b46f9a0b0c693029ac45ce5b4c594270",
+      "sourceUrl": "https://www.zhihu.com/question/1899977517470819301/answer/1899994791565058898",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-05",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "a7575da606265cf6b1d73ff554da8243fa05b1408fd1cc7900c216182c4f2019",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/541307952",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-06",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "11d8cab3790e9f311e58ec20b2455ef6f0eb4ce9c4d8dff7b48e9b48699407e4",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/696033231",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": true,
+        "evidence": "第二次正式面试",
+        "note": "提示有依据：不同公司的面试。",
+        "agreesWithEvidence": true
+      }
+    },
+    {
+      "id": "H01-07",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "1d2b96198dcb9ea598c1cb1cf54ee18a90ee2c7ee70a6386b7310bbd0822d615",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2069161357522604880",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-08",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "ee06f6972b98e490a6ab86da937be78ddad81f252e268ab026e30a7cebceb726",
+      "sourceUrl": "https://www.zhihu.com/question/28541501/answer/1478186585",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-09",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "365c13ff6f9be2edef6adc9ac1d1a2af4170777efab7ae29599a667d5fba92dd",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/344883732",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H01-10",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "e0adf015be67d03dd875796fa319e16f56ad583e43bf29f8e5fe42fab7259b74",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/606652421",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-01",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "1cf9f75cde55abd7b6c7154c1b126c127fd5f75aacbd20e2d4cd37f02c1bad25",
+      "sourceUrl": "https://www.zhihu.com/question/49022412/answer/1310402220",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-02",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "3a42f07e13a5bdfa55d289cd688a8b13eda5144177462497523a773cb472a920",
+      "sourceUrl": "https://www.zhihu.com/question/313944372/answer/2185249446",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": false,
+        "evidence": "另一家",
+        "note": "建议中比较公司，不能据此确认作者有多次经历。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H02-03",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "06c0be27af3227853db26a409f1e919462369fab93aeb608ac1f33e2233eb20b",
+      "sourceUrl": "https://www.zhihu.com/question/266451435/answer/2153027567",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-04",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "5cc273521e1fcc05ae7dba240cf01f0f7d9eab722f4006d00b33e6209befd04a",
+      "sourceUrl": "https://www.zhihu.com/question/5051811905/answer/41115473027",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-05",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "01ab6719b4bab9886fd03e30d53b66e179ba8054df529aaf3527c4b4c4a7d4e0",
+      "sourceUrl": "https://www.zhihu.com/question/28824325/answer/3030693634",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": true,
+        "evidence": "时隔两年再次来求offer",
+        "note": "提示有依据：旧申请与新申请分开。",
+        "agreesWithEvidence": true
+      }
+    },
+    {
+      "id": "H02-06",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "98f3aa33327be2458cff7fec6f5af830f4a6c3910589085ac01f7c8f050eca70",
+      "sourceUrl": "https://www.zhihu.com/question/265032879/answer/821631463",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-07",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "6707765139b86c31bc1f06d284040ccc400366a025d24d1927d7245f831bf457",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2063213308900008787",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": false,
+        "evidence": "另一家公司",
+        "note": "维权材料举例，不能据此确认作者经历。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H02-08",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "85c6653f48749b17c585655d94d43ba48abc4ffa2ca3d8a0d5c72380a3ef2c31",
+      "sourceUrl": "https://www.zhihu.com/question/5051811905/answer/44747007759",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H02-09",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "5e3ffb1421d23e884c849d7539a464a5c1217578247b187fe8e389ffd48d88a7",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/361710128",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": false,
+        "evidence": "再次投递",
+        "note": "建议再次投递，不是已发生的作者经历。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H02-10",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "1dd9199dac3905d071a037170ca005f8d8b17d1c49069a75968390b813fb32f8",
+      "sourceUrl": "https://www.zhihu.com/question/5051811905/answer/43797273531",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": false,
+        "evidence": "第二次读",
+        "note": "重复阅读，不是再次求职。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H03-01",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "fbbc904802d0523b2d154367163ad34bc37f20f33944ae251eeb50606bf5a276",
+      "sourceUrl": "https://www.zhihu.com/question/2044846230879171151/answer/2047767807211857696",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-02",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "92defd05fc77b60005bdadd862d835c04f10fcac812dbc6a55cf69c2ac389684",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2029317528061580664",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": true,
+      "hintAudit": {
+        "multiple": false,
+        "evidence": "另一个旅游点",
+        "note": "地点措辞，不是另一次辞职事件。",
+        "agreesWithEvidence": false
+      }
+    },
+    {
+      "id": "H03-03",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "4024173a0008672cfaec7004eed1a93f0d3b37a40b15200d7549e3ca828c1323",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/30628508031",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-04",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "563a5bfd25864e17b6e6744e9524bab6f189a9b5efc16daa5da1a50113c4939f",
+      "sourceUrl": "https://www.zhihu.com/question/287018202/answer/2486447255",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-05",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "fb4253f67b42627203e6fccc3e54ba92f3db355f720c8aeeb32e2adbf472be64",
+      "sourceUrl": "https://www.zhihu.com/question/9168806770/answer/2069990827326171031",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-06",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "028cae830a91aad9fd6e3d17bd4d9706e76ab11604bf70b2bc4f9bb00a7af331",
+      "sourceUrl": "https://www.zhihu.com/question/264044992/answer/1679493087",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-07",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "47cfaaf470f3c621df23bc921fbd092f528ff34a55847ad40c685b1c174625f7",
+      "sourceUrl": "https://www.zhihu.com/question/602676366/answer/122977068433",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-08",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "5db41b533ec554723a3ae1bef32efc0ebd6f7b68f8d15226e5862e7d45ce270e",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2011931839867164261",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-09",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "6c19a29597dfb00f2b1c131cea7e07c92d8a4a6a11cc7f4881f6219f38b320ee",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2056505920390223552",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H03-10",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "efaa1ef02bd9b72135df42e90ebe2de7ee170b8432fc4f6ed5973d4b2dc6a3a7",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2014256027739108772",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-01",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "6cc80951098754d8d602aac36503230f78505050f37c7e296002c03b801945e6",
+      "sourceUrl": "https://www.zhihu.com/question/29023850/answer/2337201761",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-02",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "e189e64fb550b4ca88091b31cf9b9e3b35a0daeabd1ea541dd5aaa6b27f0573a",
+      "sourceUrl": "https://www.zhihu.com/question/29023850/answer/1840087602",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-03",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "5e60a9f4614b7de20ce202dbf54b97e88ed9591b8f96eb1fc01a013299337ccf",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2076741843614692570",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-04",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "2244d1041ab2768b7e5478e1a5a410b527e6b4844d615669a9712b48240eb7ff",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/426346462",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-05",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "2e38769bd818c237b37a1b3432df387fcb19111897d59e9027f44474dc3bb4a7",
+      "sourceUrl": "https://www.zhihu.com/question/633406328/answer/3362848994",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-06",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "4d6845ca2f159eb4aeb8cb9188f22ec8aa2439f1526b8332cbe73739a7314377",
+      "sourceUrl": "https://www.zhihu.com/question/29023850/answer/3318133001",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-07",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "5034378a48a3d87f63c391758c571a2ba8a7f93ce9f4bc19f31ad0f9bfa64c31",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/1920800226534482475",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-08",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "96396a8e509fa4415f4d029a856191a2d3d63ee2b203bf45104d871ee47de51d",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/692342960",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-09",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "c4749331124aad62f0c3b7e10f52b263bf291bc6d68ef71040abba294b1e761d",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2040509306345345600",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    },
+    {
+      "id": "H04-10",
+      "display": "unreviewed candidate only",
+      "mappingPassed": true,
+      "rawTextSha256": "09a643fdf6f7f4f51125c774de570c1402c01a405e03ccef891c7d5c3f82c24a",
+      "sourceUrl": "https://zhuanlan.zhihu.com/p/2078062656762782266",
+      "duplicateCollapsed": true,
+      "requiredMissingRejected": true,
+      "hint": false,
+      "hintAudit": null
+    }
+  ]
+}

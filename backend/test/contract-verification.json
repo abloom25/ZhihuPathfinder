@@ -1,0 +1,250 @@
+{
+  "verifiedAt": "2026-09-13T23:56:41.569Z",
+  "source": "actual HTTP responses with controlled upstream, not live Zhihu",
+  "checks": [
+    {
+      "scenario": "curated",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "curated",
+      "path": "/stories/{storyId}",
+      "status": 200,
+      "schema": "StoryResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "curated",
+      "path": "/stories/{storyId}",
+      "status": 200,
+      "schema": "StoryResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "curated",
+      "path": "/stories/{storyId}",
+      "status": 200,
+      "schema": "StoryResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "curated",
+      "path": "/stories/{storyId}",
+      "status": 404,
+      "schema": "ErrorResponse",
+      "code": "NOT_FOUND",
+      "passed": true
+    },
+    {
+      "scenario": "search success",
+      "path": "/search",
+      "status": 200,
+      "schema": "SearchResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "search success",
+      "path": "/search",
+      "status": 200,
+      "schema": "SearchResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "search success",
+      "path": "/search",
+      "status": 400,
+      "schema": "ErrorResponse",
+      "code": "INVALID_QUERY",
+      "passed": true
+    },
+    {
+      "scenario": "empty",
+      "path": "/search",
+      "status": 200,
+      "schema": "SearchResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "HTTP limit",
+      "path": "/search",
+      "status": 429,
+      "schema": "ErrorResponse",
+      "code": "RATE_LIMITED",
+      "passed": true
+    },
+    {
+      "scenario": "HTTP limit",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "business limit",
+      "path": "/search",
+      "status": 429,
+      "schema": "ErrorResponse",
+      "code": "RATE_LIMITED",
+      "passed": true
+    },
+    {
+      "scenario": "business limit",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "HTTP auth",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "HTTP auth",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "HTTP failure",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "HTTP failure",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "business failure",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "business failure",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "invalid JSON",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "invalid JSON",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "missing Items",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "missing Items",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "invalid item",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "invalid item",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "network failure",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    },
+    {
+      "scenario": "network failure",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "timeout",
+      "path": "/search",
+      "status": 504,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_TIMEOUT",
+      "passed": true
+    },
+    {
+      "scenario": "timeout",
+      "path": "/stories",
+      "status": 200,
+      "schema": "HomeResponse",
+      "code": null,
+      "passed": true
+    },
+    {
+      "scenario": "missing secret",
+      "path": "/search",
+      "status": 502,
+      "schema": "ErrorResponse",
+      "code": "UPSTREAM_UNAVAILABLE",
+      "passed": true
+    }
+  ],
+  "reservedNotExercised": [
+    "GET /stories 502",
+    "GET /stories/{storyId} 502"
+  ]
+}

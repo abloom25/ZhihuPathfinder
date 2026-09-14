@@ -1,0 +1,7 @@
+**
+!server.mjs
+!package.json
+!data/
+!data/stories.json
+
+!shares.mjs

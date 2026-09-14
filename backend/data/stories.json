@@ -1,0 +1,161 @@
+[
+  {
+    "id": "story-h01-03",
+    "title": "练习之后，这场面试怎样了？",
+    "reviewStatus": "source_checked",
+    "reviewLabel": "公开原文已核对",
+    "source": {
+      "url": "https://zhuanlan.zhihu.com/p/652038393",
+      "authorName": "知乎用户G70HnX",
+      "title": "关于面试(个人分享) - 知乎",
+      "retrievedAt": "2026-09-06T07:04:58Z",
+      "apiEditTime": 1692931837,
+      "coverage": "api_excerpt",
+      "rawText": "8月25日更新\n某场面试前，我对着手机摄像头模拟面试中的自我介绍，对着手机，自我介绍三分钟。模拟完，看着视频中的自己，感觉自己有不少问题。第一全程眼神乱飘；第二，可能出于紧张，没有把自己内心想说的全部都表达出来；第三，可能是不熟练，没有条理清晰、语言准确地把自己所思所想表达出来。\n出现问题那就去解决。紧张也好，不熟练也罢，我采取反复模拟，反复改进的方法去改进。具体就是，继续对着摄像头模拟，模拟完看视频想着怎么改进，想完继续录像模拟，反反复复，直到口干舌燥。再加上在面试路上，自己在地铁上口头练习回答，最终在那场面试中表现还凑合，面试获得了通过。\n我是分割线…………\n8月24日更新\n面试流程一般是先让咱们自我介绍，然后再问咱们几个问题，问完问题再让咱们提问，给咱们解答。"
+    },
+    "episodes": [
+      {
+        "id": "episode-1",
+        "label": "同一段经历",
+        "nodes": [
+          {
+            "id": "h01-03-n1",
+            "label": "当时",
+            "quote": "模拟完，看着视频中的自己，感觉自己有不少问题。",
+            "timeLabel": null
+          },
+          {
+            "id": "h01-03-n2",
+            "label": "行动",
+            "quote": "我采取反复模拟，反复改进的方法去改进。",
+            "timeLabel": null
+          },
+          {
+            "id": "h01-03-n3",
+            "label": "后来",
+            "quote": "最终在那场面试中表现还凑合，面试获得了通过。",
+            "timeLabel": null
+          }
+        ],
+        "unknowns": [
+          "岗位、录用与入职情况未知；正文月日未写年份。不把8月24日一般流程说明当作该场面试的早期记录。"
+        ]
+      }
+    ],
+    "readingNote": "自述练习后通过，不证明练习导致通过。",
+    "displayOrder": 0
+  },
+  {
+    "id": "story-h02-01",
+    "title": "等来的offer，事情就结束了吗？",
+    "reviewStatus": "source_checked",
+    "reviewLabel": "公开原文已核对",
+    "source": {
+      "url": "https://www.zhihu.com/question/49022412/answer/1310402220",
+      "authorName": "justWiner",
+      "title": "面试通过,也谈好了薪资,hr说内部需要走审批流程,是录取了吧? - 知乎",
+      "retrievedAt": "2026-09-06T07:05:00Z",
+      "apiEditTime": 1785825850,
+      "coverage": "api_excerpt",
+      "rawText": "2020-7-8\n这周开始背景调查了，同事已经接到背调电话，许愿背调通过！\n简历上我把同一个公司的实习经历和正式工作经历合并了，虽然hr面试的时候给面试官解释了一下，但是背调还是很慌……\n期待能够回来还愿！！\n…………………………分割线\n还愿来了，于6.30号晚11点收到书面邮件offer，等后续背景调查了！☺️☺️☺️\n…………………………分割线\n一样，6.23，hr打电话过来，谈好薪资、所属部门、评级等，电话最后说要等提交审批流程，审批成功后会发offer\n到6.30还没收到任何消息，虽然中间有三天端午假期，但也过了三个工作日了。\n希望这周能收到offer"
+    },
+    "episodes": [
+      {
+        "id": "episode-1",
+        "label": "同一段经历",
+        "nodes": [
+          {
+            "id": "h02-01-n1",
+            "label": "早期·等待审批",
+            "quote": "一样，6.23，hr打电话过来，谈好薪资、所属部门、评级等，电话最后说要等提交审批流程，审批成功后会发offer",
+            "timeLabel": null
+          },
+          {
+            "id": "h02-01-n2",
+            "label": "早期·截至6.30仍等待",
+            "quote": "到6.30还没收到任何消息，虽然中间有三天端午假期，但也过了三个工作日了。",
+            "timeLabel": null
+          },
+          {
+            "id": "h02-01-n3",
+            "label": "后来·6.30晚",
+            "quote": "还愿来了，于6.30号晚11点收到书面邮件offer，等后续背景调查了！☺️☺️☺️",
+            "timeLabel": null
+          },
+          {
+            "id": "h02-01-n4",
+            "label": "最新段·2020-7-8",
+            "quote": "这周开始背景调查了，同事已经接到背调电话，许愿背调通过！",
+            "timeLabel": null
+          }
+        ],
+        "unknowns": [
+          "背调是否通过、是否入职未知。6.23/6.30年份未在各句独立写明，保留原标记；不把接口EditTime当任一事件时间。"
+        ]
+      }
+    ],
+    "readingNote": "拿到书面offer不等于背调通过或已入职。",
+    "displayOrder": 1
+  },
+  {
+    "id": "story-h02-05",
+    "title": "两年前拿到offer，两年后又回来了",
+    "reviewStatus": "source_checked",
+    "reviewLabel": "公开原文已核对",
+    "source": {
+      "url": "https://www.zhihu.com/question/28824325/answer/3030693634",
+      "authorName": "kurz",
+      "title": "等面试结果是一种什么样的体验? - 知乎",
+      "retrievedAt": "2026-09-06T07:05:00Z",
+      "apiEditTime": 1743390840,
+      "coverage": "api_excerpt",
+      "rawText": "这周一视频面试的一家德企，非常想去的一家企业，说是会尽快给面试结果，焦急等待中。希望能沾一沾楼上的喜气，拿到offer。\n神贴，已接到HR口头offer，确认入职日期后，就会发邮件offer，还愿！！\n啦啦啦啦，已经拿到offer了！！\n2023.5.24\n时隔两年再次来求offer啦，希望接好运，沾沾喜气！！\n2025.3.31"
+    },
+    "episodes": [
+      {
+        "id": "application-1",
+        "label": "第一次求职",
+        "nodes": [
+          {
+            "id": "h02-05-n1",
+            "label": "第一次·等待",
+            "quote": "这周一视频面试的一家德企，非常想去的一家企业，说是会尽快给面试结果，焦急等待中。",
+            "timeLabel": null
+          },
+          {
+            "id": "h02-05-n2",
+            "label": "第一次·口头offer",
+            "quote": "神贴，已接到HR口头offer，确认入职日期后，就会发邮件offer，还愿！！",
+            "timeLabel": null
+          },
+          {
+            "id": "h02-05-n3",
+            "label": "第一次·后来",
+            "quote": "啦啦啦啦，已经拿到offer了！！",
+            "timeLabel": null
+          }
+        ],
+        "unknowns": [
+          "确切入职状态未提供；保留正文日期原位置，不自动绑定每个事件。"
+        ]
+      },
+      {
+        "id": "application-2",
+        "label": "两年后再次求职",
+        "nodes": [
+          {
+            "id": "h02-05-n4",
+            "label": "第二次·重新求职",
+            "quote": "时隔两年再次来求offer啦，希望接好运，沾沾喜气！！",
+            "timeLabel": null
+          }
+        ],
+        "unknowns": [
+          "第二次求职结果未见，不能沿用第一次的offer。"
+        ]
+      }
+    ],
+    "readingNote": "不得把第一次的成功结局复制到第二次求职。",
+    "displayOrder": 2
+  }
+]

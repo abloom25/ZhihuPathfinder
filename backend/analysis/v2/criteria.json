@@ -1,0 +1,104 @@
+{
+  "createdBeforeGeneration": true,
+  "criteria": [
+    {
+      "id": "H01-01",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        2
+      ],
+      "criterion": "客服和前台为两次；条件上班不是已录用或入职"
+    },
+    {
+      "id": "H02-05",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        2
+      ],
+      "criterion": "两年后再次申请单独成段；旧offer只能归第一次；不强绑邻接日期"
+    },
+    {
+      "id": "H02-10",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        0
+      ],
+      "criterion": "两次阅读题目是建议分析，不是两次求职"
+    },
+    {
+      "id": "H03-02",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        1
+      ],
+      "criterion": "不同日期属于同一个辞职倒计时；设定目标不等于辞职"
+    },
+    {
+      "id": "H03-06",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        0
+      ],
+      "criterion": "一般辞职建议，没有作者经历"
+    },
+    {
+      "id": "H04-10",
+      "set": "regression",
+      "acceptableEpisodeCounts": [
+        1
+      ],
+      "criterion": "同一段在职读研回顾；按原文保留已毕业，不拆每学年"
+    },
+    {
+      "id": "H01-03",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        1
+      ],
+      "criterion": "练习与面试属于同段；只确认面试通过，不得推断录用入职或因果"
+    },
+    {
+      "id": "H01-06",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        3
+      ],
+      "criterion": "销售面谈、同行电话及其后续、杭州面试三个机会；电话后续不能拆成新机会；杭州未选中不可归别处"
+    },
+    {
+      "id": "H02-01",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        1
+      ],
+      "criterion": "等待审批、书面offer、背调属于同一次求职；背调通过和入职未知"
+    },
+    {
+      "id": "H02-09",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        0
+      ],
+      "criterion": "第一人称引号是建议话术，不是作者拒offer亲历"
+    },
+    {
+      "id": "H03-05",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        1
+      ],
+      "criterion": "作者想辞职但未做；同事裸辞返聘不属于作者结果"
+    },
+    {
+      "id": "H04-09",
+      "set": "validation",
+      "acceptableEpisodeCounts": [
+        3,
+        4
+      ],
+      "criterion": "退役、考试尝试与校招就业可分；放弃考研可独立也可与考试尝试合并；考公失败与已入职不能归到尚无结果的在职考研"
+    }
+  ],
+  "usefulDefinition": "格式和引用检查通过，人工核对无过拆/错归结果/计划写成事实，且正确展示至少一个有依据的经历；非亲历正确拒绝单独计数。弃答不计识别成功。",
+  "note": "验证集未用于本轮实现调试，历史材料此前可见，不是盲测。所有标准冻结后再调用模型；单次小样本不代表总体准确率。"
+}

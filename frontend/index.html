@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" href="data:," />
+    <title>问津 Pathfinder · 等消息的这一周</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 手绘描边滤镜：边框伪元素引用，正文不受影响 -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <!-- 主笔触：柔和抖动 + 平滑轻重变化 + 微模糊抗锯齿 -->
+      <filter id="pencil" x="-8%" y="-8%" width="116%" height="116%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="7" result="wobble" />
+        <feDisplacementMap in="SourceGraphic" in2="wobble" scale="2.5" result="moved" />
+        <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="2" seed="4" result="tone" />
+        <feColorMatrix in="tone" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.5 0.5 0.5 0 0.25" result="toneAlpha" />
+        <feComposite in="moved" in2="toneAlpha" operator="in" result="toned" />
+        <feGaussianBlur in="toned" stdDeviation="0.4" />
+      </filter>
+      <!-- 复勾淡线：更小的抖动、不同随机种子 -->
+      <filter id="pencilSoft" x="-8%" y="-8%" width="116%" height="116%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="11" result="wobble" />
+        <feDisplacementMap in="SourceGraphic" in2="wobble" scale="2" result="moved" />
+        <feGaussianBlur in="moved" stdDeviation="0.4" />
+      </filter>
+    </svg>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

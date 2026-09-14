@@ -1,0 +1,9 @@
+# Explicit opt-in: mount a backend-owned file, never bake it into an image.
+services:
+  api:
+    environment:
+      ZHIHU_ACCESS_SECRET_FILE: /run/secrets/zhihu_access_secret
+    secrets: [zhihu_access_secret]
+secrets:
+  zhihu_access_secret:
+    file: ${ZHIHU_SECRET_FILE:?Set an absolute path to the backend secret file}

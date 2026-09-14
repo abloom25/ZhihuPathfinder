@@ -1,0 +1,5 @@
+node_modules/
+frontend/dist/
+backend/runtime/
+*.log
+.DS_Store

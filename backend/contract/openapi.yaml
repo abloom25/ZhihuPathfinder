@@ -1,0 +1,377 @@
+openapi: 3.1.0
+info:
+  title: 后来呢 前端对接契约
+  version: 0.1.0
+  description: 已实现的stories/search核心契约；分享另见02-接口部署与验收.md。不是知乎官方API。核验表示摘录与公开原文核对，不代表线下事实或作者身份认证。
+servers:
+- url: /api/v1
+  description: 同源后端前缀；本地开发使用代理。
+paths:
+  /stories:
+    get:
+      operationId: listStories
+      summary: 首屏核验经历，按displayOrder升序
+      responses:
+        '200':
+          description: 预先核验的内容快照
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomeResponse'
+        '502':
+          description: 上游连接或业务异常
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /stories/{storyId}:
+    get:
+      operationId: getStory
+      summary: 核验经历详情
+      parameters:
+      - in: path
+        name: storyId
+        required: true
+        schema:
+          type: string
+        example: story-h02-01
+      responses:
+        '200':
+          description: 核验经历
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoryResponse'
+        '404':
+          description: 经历不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: 上游连接或业务异常
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /search:
+    post:
+      operationId: searchCandidates
+      summary: 查询知乎来源候选，不自动产出核验故事
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: 候选或空结果；hasMore恒false，无分页
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: 输入不合法
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: 知乎或本服务限流
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: 上游连接或业务异常
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: 上游超时
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Source:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+          format: uri
+        authorName:
+          type: string
+          minLength: 1
+        title:
+          type: string
+        retrievedAt:
+          type: string
+          format: date-time
+        apiEditTime:
+          type:
+          - integer
+          - 'null'
+          description: 知乎原始EditTime秒值，仅源信息，不是经历事件时间。
+        coverage:
+          type: string
+          enum:
+          - api_excerpt
+        rawText:
+          type: string
+          minLength: 1
+      required:
+      - url
+      - authorName
+      - title
+      - retrievedAt
+      - apiEditTime
+      - coverage
+      - rawText
+    Node:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        quote:
+          type: string
+          minLength: 1
+        timeLabel:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - label
+      - quote
+      - timeLabel
+    Episode:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+          minItems: 1
+        unknowns:
+          type: array
+          items:
+            type: string
+          minItems: 1
+      required:
+      - id
+      - label
+      - nodes
+      - unknowns
+    Story:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          pattern: ^story-[a-z0-9-]+$
+        title:
+          type: string
+        reviewStatus:
+          type: string
+          const: source_checked
+        reviewLabel:
+          type: string
+          const: 公开原文已核对
+        source:
+          $ref: '#/components/schemas/Source'
+        episodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Episode'
+          minItems: 1
+        readingNote:
+          type: string
+        displayOrder:
+          type: integer
+          minimum: 0
+      required:
+      - id
+      - title
+      - reviewStatus
+      - reviewLabel
+      - source
+      - episodes
+      - readingNote
+      - displayOrder
+    Candidate:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        reviewStatus:
+          type: string
+          const: unreviewed
+        source:
+          $ref: '#/components/schemas/Source'
+        notice:
+          type: string
+        possibleMultipleEvents:
+          type: boolean
+      required:
+      - id
+      - reviewStatus
+      - source
+      - notice
+      - possibleMultipleEvents
+    HomeResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            stories:
+              type: array
+              items:
+                $ref: '#/components/schemas/Story'
+          required:
+          - stories
+        meta:
+          type: object
+          additionalProperties: false
+          properties:
+            requestId:
+              type: string
+            contentMode:
+              type: string
+              const: curated_snapshot
+          required:
+          - requestId
+          - contentMode
+      required:
+      - data
+      - meta
+    StoryResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/Story'
+        meta:
+          type: object
+          additionalProperties: false
+          properties:
+            requestId:
+              type: string
+            contentMode:
+              type: string
+              const: curated_snapshot
+          required:
+          - requestId
+          - contentMode
+      required:
+      - data
+      - meta
+    SearchRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 120
+          description: 去除首尾空白后1至120个Unicode码点。
+      required:
+      - query
+    SearchResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            query:
+              type: string
+            candidates:
+              type: array
+              items:
+                $ref: '#/components/schemas/Candidate'
+              maxItems: 10
+            hasMore:
+              type: boolean
+              const: false
+          required:
+          - query
+          - candidates
+          - hasMore
+        meta:
+          type: object
+          additionalProperties: false
+          properties:
+            requestId:
+              type: string
+            mode:
+              type: string
+              enum:
+              - live
+              - cached
+            fetchedAt:
+              type: string
+              format: date-time
+          required:
+          - requestId
+          - mode
+          - fetchedAt
+      required:
+      - data
+      - meta
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          properties:
+            code:
+              type: string
+              enum:
+              - INVALID_QUERY
+              - NOT_FOUND
+              - RATE_LIMITED
+              - UPSTREAM_UNAVAILABLE
+              - UPSTREAM_TIMEOUT
+            message:
+              type: string
+            retryAfterSeconds:
+              type:
+              - integer
+              - 'null'
+              minimum: 1
+          required:
+          - code
+          - message
+          - retryAfterSeconds
+        meta:
+          type: object
+          additionalProperties: false
+          properties:
+            requestId:
+              type: string
+          required:
+          - requestId
+      required:
+      - error
+      - meta
+x-implementation-status: proposed-not-deployed

@@ -1,0 +1,165 @@
+{
+  "pairs": [
+    {
+      "id": "pair-1-a",
+      "sourceId": "H02-01",
+      "type": "outcome",
+      "text": "作者自述收到了书面邮件offer。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "offer与入职"
+    },
+    {
+      "id": "pair-1-b",
+      "sourceId": "H02-01",
+      "type": "outcome",
+      "text": "作者已经通过背调并正式入职。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "offer与入职"
+    },
+    {
+      "id": "pair-2-a",
+      "sourceId": "H02-05",
+      "type": "outcome",
+      "text": "两年后再次求职的结果，提供片段没有写明。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "旧结果不能套新申请"
+    },
+    {
+      "id": "pair-2-b",
+      "sourceId": "H02-05",
+      "type": "outcome",
+      "text": "两年后的第二次求职也已经拿到了offer。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "旧结果不能套新申请"
+    },
+    {
+      "id": "pair-3-a",
+      "sourceId": "H03-03",
+      "type": "claim",
+      "text": "作者已经向领导提出离职。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "提出与完成"
+    },
+    {
+      "id": "pair-3-b",
+      "sourceId": "H03-03",
+      "type": "claim",
+      "text": "作者已经办理完离职手续，离开了公司。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "提出与完成"
+    },
+    {
+      "id": "pair-4-a",
+      "sourceId": "H02-10",
+      "type": "claim",
+      "text": "作者分析了题目的两种理解，没有明确叙述自己的offer被撤经历。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "分析不是亲历"
+    },
+    {
+      "id": "pair-4-b",
+      "sourceId": "H02-10",
+      "type": "claim",
+      "text": "作者亲历公司撤销offer，随后索赔了一个月工资。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "分析不是亲历"
+    },
+    {
+      "id": "pair-5-a",
+      "sourceId": "H03-02",
+      "type": "claim",
+      "text": "作者计划在2028年7月1日辞职，片段没有说明目标已实现。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "未来目标"
+    },
+    {
+      "id": "pair-5-b",
+      "sourceId": "H03-02",
+      "type": "claim",
+      "text": "作者已经在2028年7月1日成功辞职。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "未来目标"
+    },
+    {
+      "id": "pair-6-a",
+      "sourceId": "H01-01",
+      "type": "relation",
+      "text": "客服面试和前台面试是两个不同工作机会。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "独立事件"
+    },
+    {
+      "id": "pair-6-b",
+      "sourceId": "H01-01",
+      "type": "relation",
+      "text": "客服面试和前台面试是同一个岗位申请的两个阶段。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "独立事件"
+    },
+    {
+      "id": "pair-7-a",
+      "sourceId": "H04-10",
+      "type": "outcome",
+      "text": "作者自述非全日制工程硕士已经毕业并拿到双证。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "修饰语不能替换"
+    },
+    {
+      "id": "pair-7-b",
+      "sourceId": "H04-10",
+      "type": "outcome",
+      "text": "作者自述已经获得全日制工程硕士学位。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "修饰语不能替换"
+    },
+    {
+      "id": "pair-8-a",
+      "sourceId": "H01-03",
+      "type": "claim",
+      "text": "作者自述反复模拟练习后通过了这场面试，材料不能证明练习必然导致通过。",
+      "refs": [],
+      "expected": "supported",
+      "criterion": "自述不等于因果保证"
+    },
+    {
+      "id": "pair-8-b",
+      "sourceId": "H01-03",
+      "type": "claim",
+      "text": "材料证明只要反复模拟练习，就一定能通过面试。",
+      "refs": [],
+      "expected": "unsupported",
+      "criterion": "自述不等于因果保证"
+    }
+  ],
+  "rawValidationIds": [
+    "H03-01",
+    "H03-07",
+    "H04-04"
+  ],
+  "rawCriteria": {
+    "H03-01": "全文职业建议，不能当作者已离职事实",
+    "H03-07": "岗位前端转后端、强度变大是自述；两三个月后提离职是计划；未表明已辞职",
+    "H04-04": "作者自述在读新传并一战上岸可保留；大部分是建议/推广；不能把群学习上岸说成客观因果保证"
+  },
+  "thresholds": {
+    "pairedFalseAcceptMax": 0,
+    "pairedTrueAcceptMin": 7,
+    "rawFalseAcceptMax": 0,
+    "rawCorrectRejectionRateMax": 0.2
+  },
+  "note": "Eight authored contrast pairs plus unchanged v3 B extraction on three raw historical sources not used to tune this audit. Pair labels hidden from model. No retries or prompt updates."
+}

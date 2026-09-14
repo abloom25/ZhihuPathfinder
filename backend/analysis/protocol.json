@@ -1,0 +1,38 @@
+{
+  "frozenAt": "2026-09-08T13:30:32.849Z",
+  "promptHash": "161522ade26c1f7c00e385a32e44cb299a252074eca664384114d30168c3359b",
+  "implementationHash": "1f6f44ef8bee751efb71ee2b2aa915f527d62102d7d71c3eb6c94b0597468c83",
+  "cases": [
+    [
+      "H01-01",
+      "development",
+      "multiple_supported"
+    ],
+    [
+      "H02-05",
+      "development",
+      "multiple_supported"
+    ],
+    [
+      "H02-10",
+      "development",
+      "not_personal"
+    ],
+    [
+      "H03-02",
+      "development",
+      "no_second_found"
+    ],
+    [
+      "H03-06",
+      "reserved",
+      "not_personal"
+    ],
+    [
+      "H04-10",
+      "reserved",
+      "no_second_found"
+    ]
+  ],
+  "note": "Reserved cases do not participate in prompt adjustment. Historical materials previously visible; not a blinded study. No output-driven adjustment this run."
+}
