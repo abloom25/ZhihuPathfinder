@@ -29,7 +29,7 @@ function source(v) {
 export function validSearch(v) {
   return (
     obj(v) && obj(v.meta) && str(v.meta.requestId) &&
-    ['live', 'cached'].includes(String(v.meta.mode)) && date(v.meta.fetchedAt) &&
+    typeof v.meta.mode === 'string' && ['live', 'cached'].includes(v.meta.mode) && date(v.meta.fetchedAt) &&
     obj(v.data) && str(v.data.query) && v.data.hasMore === false &&
     Array.isArray(v.data.candidates) &&
     v.data.candidates.every((c) => obj(c) && str(c.id) && c.reviewStatus === 'unreviewed' && source(c.source) && str(c.notice) && typeof c.possibleMultipleEvents === 'boolean')
@@ -81,7 +81,7 @@ export async function searchCandidates(query, signal) {
       if (code && known.includes(code)) throw new ApiError(code, body.error.message, body.error.retryAfterSeconds ?? null)
       throw new ApiError('BAD_RESPONSE', '查询暂时不可用，你的输入已保留')
     }
-    if (!validSearch(body)) throw new ApiError('BAD_RESPONSE', '查询暂时不可用，你的输入已保留')
+    if (!validSearch(body) || body.data.query !== query.trim()) throw new ApiError('BAD_RESPONSE', '查询暂时不可用，你的输入已保留')
     return body
   } finally {
     clearTimeout(timer)

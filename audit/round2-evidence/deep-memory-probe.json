@@ -1,0 +1,56 @@
+{
+  "requests": 960,
+  "upstreamCalls": 960,
+  "cacheLimit": 100,
+  "samples": [
+    {
+      "batch": 0,
+      "rss": 92733440,
+      "heapTotal": 29163520,
+      "heapUsed": 10612416,
+      "external": 3800056,
+      "arrayBuffers": 67958
+    },
+    {
+      "batch": 1,
+      "rss": 114556928,
+      "heapTotal": 46727168,
+      "heapUsed": 10758976,
+      "external": 3808288,
+      "arrayBuffers": 76150
+    },
+    {
+      "batch": 2,
+      "rss": 116457472,
+      "heapTotal": 46465024,
+      "heapUsed": 10910792,
+      "external": 3808288,
+      "arrayBuffers": 76150
+    },
+    {
+      "batch": 3,
+      "rss": 119930880,
+      "heapTotal": 46202880,
+      "heapUsed": 9907616,
+      "external": 3797939,
+      "arrayBuffers": 76150
+    },
+    {
+      "batch": 4,
+      "rss": 121241600,
+      "heapTotal": 46465024,
+      "heapUsed": 10018904,
+      "external": 3797939,
+      "arrayBuffers": 76150
+    },
+    {
+      "batch": 5,
+      "rss": 121339904,
+      "heapTotal": 46989312,
+      "heapUsed": 9997424,
+      "external": 3797939,
+      "arrayBuffers": 76150
+    }
+  ],
+  "scope": "single Node process, real local HTTP, synthetic cache churn; not browser memory or absence-of-leaks proof"
+}

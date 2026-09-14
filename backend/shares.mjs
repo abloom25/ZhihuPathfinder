@@ -4,10 +4,23 @@ import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const fail=(status,message)=>Object.assign(new Error(message),{status});
 const short=(v,n)=>typeof v==='string' && v.trim().length>0 && [...v].length<=n;
+const object=v=>v!==null && typeof v==='object' && !Array.isArray(v);
+const uuid=v=>typeof v==='string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(v);
+const exact=(v,fields)=>object(v) && Object.keys(v).length===fields.length && fields.every(k=>Object.hasOwn(v,k));
+const source=v=>{try{const u=new URL(v);return typeof v==='string' && u.protocol==='https:' && !u.username && !u.password && (u.hostname==='zhihu.com'||u.hostname.endsWith('.zhihu.com'))}catch{return false}};
+function validRow(r) {
+ if(!object(r)||!uuid(r.id)||typeof r.tokenHash!=='string'||!/^[a-f0-9]{64}$/.test(r.tokenHash))return false;
+ if(r.revoked===true)return exact(r,['id','tokenHash','revoked']);
+ return exact(r,['id','situation','text','demo','sourceUrl','sourceExcerpt','createdAt','tokenHash']) &&
+  short(r.situation,80) && short(r.text,2000) && typeof r.demo==='boolean' &&
+  typeof r.createdAt==='string' && Number.isFinite(Date.parse(r.createdAt)) &&
+  (r.sourceUrl===null||source(r.sourceUrl)) &&
+  (r.sourceExcerpt===null||(short(r.sourceExcerpt,500)&&source(r.sourceUrl)));
+}
 export function createShares(file) {
- const read=()=>{if(!existsSync(file))return [];const v=JSON.parse(readFileSync(file,'utf8'));if(!Array.isArray(v))throw Error('invalid store');return v};
+ const read=()=>{if(!existsSync(file))return [];const v=JSON.parse(readFileSync(file,'utf8'));if(!Array.isArray(v)||!v.every(validRow)||new Set(v.map(r=>r.id)).size!==v.length)throw Error('invalid store');return v};
  const write=rows=>{mkdirSync(dirname(file),{recursive:true});writeFileSync(file+'.tmp',JSON.stringify(rows),{mode:0o600,flush:true});renameSync(file+'.tmp',file)};
- const publicRow=({tokenHash,...row})=>row;
+ const publicRow=({id,situation,text,demo,sourceUrl,sourceExcerpt,createdAt})=>({id,situation,text,demo,sourceUrl,sourceExcerpt,createdAt});
  return async (req,res,path,reply)=>{
   if(!path.startsWith('/api/v1/shares'))return false;
   try {
